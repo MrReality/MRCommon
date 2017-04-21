@@ -439,7 +439,13 @@
     }];
 }
 
-
+- (UIImage *)imageSnapshotWithWebView:(UIView *)webView {
+    UIGraphicsBeginImageContextWithOptions(webView.bounds.size,YES,webView.contentScaleFactor);
+    [webView drawViewHierarchyInRect:webView.bounds afterScreenUpdates:YES];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 
 

@@ -95,4 +95,7 @@ typedef void(^TakePicture)(UIImage *image);
  */
 + (void)showPictureWithFrame:(CGRect)frame andPicture:(UIImage *)image;
 
+/// webView 导出图片调用的方法, The method called webView export images
+- (UIImage *)imageSnapshotWithWebView:(UIView *)webView;
+
 @end
