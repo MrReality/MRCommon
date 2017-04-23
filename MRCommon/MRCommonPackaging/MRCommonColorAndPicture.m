@@ -440,8 +440,8 @@
 }
 
 - (UIImage *)imageSnapshotWithWebView:(UIView *)webView {
-    UIGraphicsBeginImageContextWithOptions(webView.bounds.size,YES,webView.contentScaleFactor);
-    [webView drawViewHierarchyInRect:webView.bounds afterScreenUpdates:YES];
+    UIGraphicsBeginImageContextWithOptions(webView.bounds.size, YES, webView.contentScaleFactor);
+    [webView drawViewHierarchyInRect:webView.bounds afterScreenUpdates:NO];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
