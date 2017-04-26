@@ -52,6 +52,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     self.promptView.center = point;
+    self.promptView.mr_size = CGSizeMake(0, 0);
     [UIView animateWithDuration:.5 animations:^{
         
         self.promptView.mr_size = CGSizeMake(10, 10);
@@ -128,12 +129,12 @@
 
 - (void)textStateChange{
 
-    self.promptView.mr_x = self.textField.mr_x + 8;
+    self.promptView.mr_x = self.textField.mr_x - 5;
     self.promptView.mr_centerY = self.textField.mr_centerY;
-    
-    [UIView animateWithDuration:.5 animations:^{
+    self.promptView.mr_size = CGSizeMake(0, 0);
+    [UIView animateWithDuration:.3 animations:^{
         
-        self.promptView.mr_x = self.textField.mr_x + 8;
+        self.promptView.mr_x = self.textField.mr_x - 4;
         self.promptView.mr_size = CGSizeMake(10, 10);
         self.promptView.mr_centerY = self.textField.mr_centerY;
         self.promptView.hidden = NO;
@@ -141,10 +142,13 @@
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:.3 animations:^{
-            self.promptView.mr_x = self.textField.mr_x + 8;
-            self.promptView.mr_size = CGSizeMake(0, 0);
+            self.promptView.mr_x = self.textField.mr_x;
+            self.promptView.mr_size = CGSizeMake(2, 25);
             self.promptView.mr_centerY = self.textField.mr_centerY;
+//            self.promptView.hidden = YES;
+        } completion:^(BOOL finished) {
             self.promptView.hidden = YES;
+            self.textField.tintColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
         }];
     }];
 }
@@ -169,6 +173,11 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+    textField.tintColor = [UIColor whiteColor];
+}
+
 // MARK: 懒加载
 - (UITextField *)textField{
 
@@ -188,6 +197,8 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
         view.backgroundColor = [UIColor orangeColor];
         _textField.leftView = view;
+        // 光标的yan'se
+        _textField.tintColor = [UIColor whiteColor];
     }
     return _textField;
 }
