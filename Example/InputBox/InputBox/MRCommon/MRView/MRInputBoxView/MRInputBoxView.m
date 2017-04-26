@@ -15,6 +15,7 @@
 #define kBaseColor [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.00]
 #define kSpace 5
 #define kBackGroundColor [UIColor whiteColor]
+#define kPointColor [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00]
 /// 提示图片宽
 #define kShowImgViewWidth 32
 
@@ -51,8 +52,8 @@
 
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    self.promptView.center = point;
     self.promptView.mr_size = CGSizeMake(0, 0);
+    self.promptView.center = point;
     [UIView animateWithDuration:.5 animations:^{
         
         self.promptView.mr_size = CGSizeMake(10, 10);
@@ -128,10 +129,10 @@
 }
 
 - (void)textStateChange{
-
-    self.promptView.mr_x = self.textField.mr_x - 5;
-    self.promptView.mr_centerY = self.textField.mr_centerY;
+    
     self.promptView.mr_size = CGSizeMake(0, 0);
+    self.promptView.mr_x = self.textField.mr_x;
+    self.promptView.mr_centerY = self.textField.mr_centerY;
     [UIView animateWithDuration:.3 animations:^{
         
         self.promptView.mr_x = self.textField.mr_x - 4;
@@ -141,14 +142,14 @@
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:.3 animations:^{
+        [UIView animateWithDuration:.2 animations:^{
             self.promptView.mr_x = self.textField.mr_x;
             self.promptView.mr_size = CGSizeMake(2, 25);
             self.promptView.mr_centerY = self.textField.mr_centerY;
 //            self.promptView.hidden = YES;
         } completion:^(BOOL finished) {
             self.promptView.hidden = YES;
-            self.textField.tintColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
+            self.textField.tintColor = kPointColor;
         }];
     }];
 }
@@ -219,15 +220,15 @@
     if(!_promptView){
     
         _promptView = [[UIView alloc] init];
-        _promptView.layer.cornerRadius = 8 / 2;
+        _promptView.layer.cornerRadius = 5;
         _promptView.hidden = YES;
-        _promptView.backgroundColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
+        _promptView.backgroundColor = kPointColor;
         // 设置阴影
         _promptView.layer.shadowOpacity = .5;
         // 设置阴影偏移的方向和宽度
         _promptView.layer.shadowOffset = CGSizeMake(0, 0);
-//        _promptView.layer.shadowRadius = 8 / 2;
-        _promptView.layer.shadowColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00].CGColor;
+        _promptView.layer.shadowRadius = 5;
+        _promptView.layer.shadowColor = kPointColor.CGColor;
     }
     return _promptView;
 }
