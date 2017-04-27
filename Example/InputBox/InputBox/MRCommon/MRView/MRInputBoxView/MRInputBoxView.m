@@ -126,7 +126,7 @@
         self.textField.frame = CGRectMake(2 * kSpace, self.titleLabel.mr_y + self.titleLabel.mr_height + kSpace / 2, self.mr_width - 4 * kSpace, 35);
     }
  
-    self.textField.backgroundColor = backGroundColor;
+//    self.textField.backgroundColor = backGroundColor;
 //    self.promptView.mr_x = self.textField.mr_x + 8;
 //    self.promptView.mr_centerY = self.textField.mr_centerY;
     [self addSubview:self.promptView];

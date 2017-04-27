@@ -22,6 +22,7 @@
 #import "MRInputBoxView.h"
 #import "MRDropDownView.h"
 #import "MRListDownView.h"
+#import "MRChangeView.h"
 
 #import "MRCommonColorAndPicture.h"
 #import "MRCommonTime.h"
