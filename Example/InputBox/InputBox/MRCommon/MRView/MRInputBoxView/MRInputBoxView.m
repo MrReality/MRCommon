@@ -41,11 +41,16 @@
 
     if(self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 60)]){
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textStateChange) name:UITextFieldTextDidBeginEditingNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextFieldTextDidChangeNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textStateChange) name:UITextFieldTextDidBeginEditingNotification object:nil];
+//        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextFieldTextDidChangeNotification object:nil];
     }
     return self;
+}
+
+- (void)awakeFromNib{
+
+    [super awakeFromNib];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -100,7 +105,7 @@
     
     self.backgroundColor = backGroundColor;
     
-    self.titleLabel.text = self.placeHolder;
+    self.titleLabel.text = self.textField.placeholder;
     self.titleLabel.font = [UIFont systemFontOfSize:font];
     self.titleLabel.textColor = titleColor;
     [self.titleLabel sizeToFit];
@@ -121,7 +126,6 @@
         self.textField.frame = CGRectMake(2 * kSpace, self.titleLabel.mr_y + self.titleLabel.mr_height + kSpace / 2, self.mr_width - 4 * kSpace, 35);
     }
  
-    self.textField.placeholder = self.placeHolder;
     self.textField.backgroundColor = backGroundColor;
 //    self.promptView.mr_x = self.textField.mr_x + 8;
 //    self.promptView.mr_centerY = self.textField.mr_centerY;
@@ -129,24 +133,61 @@
 }
 
 - (void)textStateChange{
+
+    /// 获取光标位置
+    UITextPosition *position = self.textField.endOfDocument;
+    CGRect rect = [self.textField caretRectForPosition:position];
     
-    self.promptView.mr_size = CGSizeMake(0, 0);
-    self.promptView.mr_x = self.textField.mr_x;
-    self.promptView.mr_centerY = self.textField.mr_centerY;
-    [UIView animateWithDuration:.3 animations:^{
-        
-        self.promptView.mr_x = self.textField.mr_x - 4;
-        self.promptView.mr_size = CGSizeMake(10, 10);
+    if(rect.origin.x > self.textField.frame.size.width - 55){
+        self.textField.tintColor = kPointColor;
+        return;
+    }
+    
+    if(!_showImage){            // 没有框
+        self.promptView.mr_size = CGSizeMake(0, 0);
+        self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
         self.promptView.mr_centerY = self.textField.mr_centerY;
-        self.promptView.hidden = NO;
+    }
+    
+    if(_showImage){             // 有框
+        self.promptView.mr_size = CGSizeMake(0, 0);
+        self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
+        self.promptView.mr_centerY = self.textField.mr_centerY;
+    }
+
+    [UIView animateWithDuration:.3 animations:^{
+        if(!_showImage){
+        
+            self.promptView.mr_x = self.textField.mr_x + 3 + rect.origin.x;
+            self.promptView.mr_size = CGSizeMake(10, 10);
+            self.promptView.mr_centerY = self.textField.mr_centerY;
+            self.promptView.hidden = NO;
+        }
+        
+        if(_showImage){
+            
+            self.promptView.mr_x = self.textField.mr_x - 4 + rect.origin.x;
+            self.promptView.mr_size = CGSizeMake(10, 10);
+            self.promptView.mr_centerY = self.textField.mr_centerY;
+            self.promptView.hidden = NO;
+        }
         
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:.2 animations:^{
-            self.promptView.mr_x = self.textField.mr_x;
-            self.promptView.mr_size = CGSizeMake(2, 25);
-            self.promptView.mr_centerY = self.textField.mr_centerY;
-//            self.promptView.hidden = YES;
+            
+            if(!_showImage){
+                self.promptView.mr_x = self.textField.mr_x + 7 + rect.origin.x;
+                self.promptView.mr_size = CGSizeMake(2, 27);
+                self.promptView.mr_centerY = self.textField.mr_centerY;
+            }
+            
+            if(_showImage){
+                self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
+                self.promptView.mr_size = CGSizeMake(2, 25);
+                self.promptView.mr_centerY = self.textField.mr_centerY;
+            }
+         
         } completion:^(BOOL finished) {
             self.promptView.hidden = YES;
             self.textField.tintColor = kPointColor;
@@ -176,8 +217,18 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 
+    [self textDidChange];
     textField.tintColor = [UIColor whiteColor];
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+
+    [self textDidChange];
+    [self textStateChange];
+}
+
+
+
 
 // MARK: 懒加载
 - (UITextField *)textField{

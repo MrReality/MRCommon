@@ -24,9 +24,11 @@
     MRInputBoxView *inputView = [[MRInputBoxView alloc] initWithFrame:CGRectMake(0, 59, 375, 0)];
     inputView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:inputView];
-    inputView.placeHolder = @"姓名";
+    inputView.textField.placeholder = @"姓名";
     inputView.showImage = [UIImage imageNamed:@"123.png"];
     inputView.backColor = [UIColor colorWithRed:0.93 green:1.00 blue:0.96 alpha:1.00];
+    
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

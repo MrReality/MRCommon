@@ -15,8 +15,6 @@
 @property (nonatomic, assign) NSInteger titleFont;
 /// 提示字体颜色
 @property (nonatomic, strong) UIColor *titleColor;
-/// 提示信息
-@property (nonatomic, copy) NSString *placeHolder;
 /// 背景色
 @property (nonatomic, strong) UIColor *backColor;
 /// 展示图片
