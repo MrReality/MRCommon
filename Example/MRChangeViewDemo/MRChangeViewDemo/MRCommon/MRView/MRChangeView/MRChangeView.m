@@ -114,6 +114,7 @@
         UILabel *label = self.labelArray[i];
         label.mr_x = i * self.labelWidth;
         label.mr_width = self.labelWidth;
+        label.mr_height = self.mr_height;
         label.mr_centerY = self.mr_height / 2;
         [self addSubview:label];
         label.textColor = self.normalColor;
@@ -185,7 +186,7 @@
         label.textColor = self.seletedColor;
         self.lineView.mr_centerX = label.mr_centerX;
     }];
-    
+    self.InitializeIndex = index;
     if(_block){
         self.block(self.tag, index);
     }

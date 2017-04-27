@@ -44,7 +44,6 @@
 		512F2C8D1EB1DF350061FDB0 /* MRSingleSwitch_未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F2C6E1EB1DF350061FDB0 /* MRSingleSwitch_未选中.png */; };
 		512F2C8E1EB1DF350061FDB0 /* MRSingleSwitch_选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F2C6F1EB1DF350061FDB0 /* MRSingleSwitch_选中.png */; };
 		512F2C8F1EB1DF350061FDB0 /* MRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 512F2C721EB1DF350061FDB0 /* MRTextField.m */; };
-		512F2C981EB1FF670061FDB0 /* 杨幂.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 512F2C971EB1FF670061FDB0 /* 杨幂.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +133,6 @@
 		512F2C6F1EB1DF350061FDB0 /* MRSingleSwitch_选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MRSingleSwitch_选中.png"; sourceTree = "<group>"; };
 		512F2C711EB1DF350061FDB0 /* MRTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTextField.h; sourceTree = "<group>"; };
 		512F2C721EB1DF350061FDB0 /* MRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTextField.m; sourceTree = "<group>"; };
-		512F2C971EB1FF670061FDB0 /* 杨幂.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "杨幂.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +183,6 @@
 		512F2B901EB1DC2F0061FDB0 /* MRChangeViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				512F2C971EB1FF670061FDB0 /* 杨幂.jpg */,
 				512F2C2A1EB1DF350061FDB0 /* MRCommon */,
 				512F2B941EB1DC2F0061FDB0 /* AppDelegate.h */,
 				512F2B951EB1DC2F0061FDB0 /* AppDelegate.m */,
@@ -552,7 +549,6 @@
 				512F2B9E1EB1DC2F0061FDB0 /* Assets.xcassets in Resources */,
 				512F2B9C1EB1DC2F0061FDB0 /* Main.storyboard in Resources */,
 				512F2C8D1EB1DF350061FDB0 /* MRSingleSwitch_未选中.png in Resources */,
-				512F2C981EB1FF670061FDB0 /* 杨幂.jpg in Resources */,
 				512F2C851EB1DF350061FDB0 /* seleted_right.png in Resources */,
 				512F2C871EB1DF350061FDB0 /* up_img.png in Resources */,
 				512F2C8B1EB1DF350061FDB0 /* sharp_List.png in Resources */,

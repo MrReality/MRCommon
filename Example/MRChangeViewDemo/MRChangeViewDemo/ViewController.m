@@ -14,8 +14,6 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) MRInputBoxView *input1;
-@property (nonatomic, strong) MRInputBoxView *input2;
 
 
 @end
@@ -25,30 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.input1 = [[MRInputBoxView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 0)];
-    // 改背景色
-    self.input1.backColor = [UIColor colorWithRed:0.96 green:0.56 blue:0.40 alpha:1.00];
-    [self.view addSubview:self.input1];
-    self.input1.textField.placeholder = @"姓名";
+    MRChangeView *changeView = [[MRChangeView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 50)];
     
+    changeView.options = @[@"杰伦林", @"俊杰王", @"力宏李", @"小龙吴", @"孟达周", @"星驰张", @"国荣梁", @"朝伟周"];
+    changeView.backgroundColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
+    [self.view addSubview:changeView];
     
-    self.input2 = [[MRInputBoxView alloc]initWithFrame:CGRectMake(0, 200, kScreenWidth, 0)];
-    // 展示字体大小
-    self.input2.titleFont = 18;
-    // 展示字的颜色
-    self.input2.titleColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
-    self.input2.textField.placeholder = @"年龄";
-    self.input2.showImage = [UIImage imageNamed:@"杨幂.jpg"];
-//    self.input2.backColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
-    [self.view addSubview:self.input2];
-    
+    [changeView seletedIndex:^(NSInteger selfTag, NSInteger seletedIndex) {
+        
+        NSLog(@"tag -> %ld, index -> %ld", selfTag, seletedIndex);
+    }];
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
-    [self.view endEditing:YES];
-}
-
 
 
 
