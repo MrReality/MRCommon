@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "FirstVC.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +16,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+ 
+    // 通过 AppDelegate 加载window, 需要先将 main 删除
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    self.window.rootViewController = [[FirstVC alloc]init];
     return YES;
 }
 

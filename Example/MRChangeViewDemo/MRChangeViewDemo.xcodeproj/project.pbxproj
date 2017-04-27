@@ -44,6 +44,7 @@
 		512F2C8D1EB1DF350061FDB0 /* MRSingleSwitch_未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F2C6E1EB1DF350061FDB0 /* MRSingleSwitch_未选中.png */; };
 		512F2C8E1EB1DF350061FDB0 /* MRSingleSwitch_选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 512F2C6F1EB1DF350061FDB0 /* MRSingleSwitch_选中.png */; };
 		512F2C8F1EB1DF350061FDB0 /* MRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 512F2C721EB1DF350061FDB0 /* MRTextField.m */; };
+		5159DF5D1EB20E5E0077BEF1 /* FirstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5159DF5C1EB20E5E0077BEF1 /* FirstVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		512F2C6F1EB1DF350061FDB0 /* MRSingleSwitch_选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MRSingleSwitch_选中.png"; sourceTree = "<group>"; };
 		512F2C711EB1DF350061FDB0 /* MRTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTextField.h; sourceTree = "<group>"; };
 		512F2C721EB1DF350061FDB0 /* MRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTextField.m; sourceTree = "<group>"; };
+		5159DF5B1EB20E5E0077BEF1 /* FirstVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstVC.h; sourceTree = "<group>"; };
+		5159DF5C1EB20E5E0077BEF1 /* FirstVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,8 @@
 				512F2B951EB1DC2F0061FDB0 /* AppDelegate.m */,
 				512F2B971EB1DC2F0061FDB0 /* ViewController.h */,
 				512F2B981EB1DC2F0061FDB0 /* ViewController.m */,
+				5159DF5B1EB20E5E0077BEF1 /* FirstVC.h */,
+				5159DF5C1EB20E5E0077BEF1 /* FirstVC.m */,
 				512F2B9A1EB1DC2F0061FDB0 /* Main.storyboard */,
 				512F2B9D1EB1DC2F0061FDB0 /* Assets.xcassets */,
 				512F2B9F1EB1DC2F0061FDB0 /* LaunchScreen.storyboard */,
@@ -587,6 +592,7 @@
 				512F2C771EB1DF350061FDB0 /* UIColor+MRColor.m in Sources */,
 				512F2C8F1EB1DF350061FDB0 /* MRTextField.m in Sources */,
 				512F2C781EB1DF350061FDB0 /* UIImageView+MRImageView.m in Sources */,
+				5159DF5D1EB20E5E0077BEF1 /* FirstVC.m in Sources */,
 				512F2C8A1EB1DF350061FDB0 /* MRListDownView.m in Sources */,
 				512F2C821EB1DF350061FDB0 /* MRChangeView.m in Sources */,
 				512F2C791EB1DF350061FDB0 /* UIScreen+MRScreen.m in Sources */,

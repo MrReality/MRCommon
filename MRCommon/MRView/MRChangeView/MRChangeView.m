@@ -8,7 +8,7 @@
 
 #import "MRChangeView.h"
 #import "UIView+MRExtension.h"
-
+#import "UIView+MRView.h"
 /// 默认字体大小
 #define kBaseTextFont 16
 /// 默认未选中颜色
@@ -132,10 +132,30 @@
             self.lineView.mr_y = self.mr_height - 3;
         }
         
+        __weak typeof(self)weakSelf = self;
+        // label 点击事件
+        [label tapActionWithBlock:^{
+            NSInteger index = label.tag - 300;
+            
+            for (UILabel *label in weakSelf.labelArray) {
+                label.textColor = weakSelf.normalColor;
+            }
+            UILabel *label = weakSelf.labelArray[index];
+            
+            [UIView animateWithDuration:.2 animations:^{
+                label.textColor = weakSelf.seletedColor;
+                weakSelf.lineView.mr_centerX = label.mr_centerX;
+            }];
+            weakSelf.InitializeIndex = index;
+            if(_block){
+                weakSelf.block(weakSelf.tag, index);
+            }
+
+        }];
         // 如果有热门话题, 加在这里
-        UIButton *button = self.buttonArray[i];
-        button.frame = label.frame;
-        [self addSubview:button];
+//        UIButton *button = self.buttonArray[i];
+//        button.frame = label.frame;
+//        [self addSubview:button];
     }
 }
 
@@ -144,7 +164,7 @@
     _options = options;
     
     NSMutableArray *labelArray = [NSMutableArray array];
-    NSMutableArray *buttonArray = [NSMutableArray array];
+//    NSMutableArray *buttonArray = [NSMutableArray array];
 
     /// 计算 label 最大宽
     for (NSInteger i = 0; i < _options.count; i++) {
@@ -157,15 +177,15 @@
         label.tag = 300 + i;
         [labelArray addObject:label];
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor clearColor];
-        button.tag = 500 + i;
-        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [buttonArray addObject:button];
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor clearColor];
+//        button.tag = 500 + i;
+//        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [buttonArray addObject:button];
     }
     self.labelWidth += kSpace;
     self.labelArray = labelArray;
-    self.buttonArray = buttonArray;
+//    self.buttonArray = buttonArray;
 
     // 水平滑动条消失
     self.showsHorizontalScrollIndicator = NO;
