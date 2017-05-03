@@ -13,8 +13,6 @@
 @property (nonatomic, strong) UITextField *textField;
 /// 提示字体大小
 @property (nonatomic, assign) NSInteger titleFont;
-/// 提示字体颜色
-@property (nonatomic, strong) UIColor *titleColor;
 /// 背景色
 @property (nonatomic, strong) UIColor *backColor;
 /// 展示图片

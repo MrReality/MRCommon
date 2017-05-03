@@ -25,7 +25,7 @@
 
     self.input1 = [[MRInputBoxView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 0)];
     // 改背景色
-    self.input1.backColor = [UIColor colorWithRed:0.96 green:0.56 blue:0.40 alpha:1.00];
+//    self.input1.backColor = [UIColor colorWithRed:0.96 green:0.56 blue:0.40 alpha:1.00];
     [self.view addSubview:self.input1];
     self.input1.textField.placeholder = @"姓名";
     
@@ -34,7 +34,6 @@
     // 展示字体大小
     self.input2.titleFont = 18;
     // 展示字的颜色
-    self.input2.titleColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
     self.input2.textField.placeholder = @"年龄";
     self.input2.showImage = [UIImage imageNamed:@"杨幂.jpg"];
     //    self.input2.backColor = [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00];
