@@ -42,11 +42,19 @@
 @implementation MRChangeView
 
 
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame{
 
     if(self = [super initWithFrame:frame]){
     
         self.delegate = self;
+        
+        // 屏幕旋转调用的方法
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(willChangeAction) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
 }
@@ -60,11 +68,21 @@
     [super awakeFromNib];
     
     self.delegate = self;
+    
+    // 屏幕旋转调用的方法
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(willChangeAction) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)willChangeAction{
+    
+    [self layoutSubviews];
 }
 
 - (void)layoutSubviews{
 
     [super layoutSubviews];
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [UIScreen mainScreen].bounds.size.width, self.frame.size.height);
     
     NSArray *optionArray;
     self.labelWidth = 0;

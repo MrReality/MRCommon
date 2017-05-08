@@ -32,6 +32,14 @@
 #import "MRCommonOther.h"
 #import "MRCommonRuntime.h"
 
+// 导航栏
+#define kNavigationHeight   64
+/// tableBar
+#define kTabBarHeight       49
+/// 屏幕宽
+#define kScreenWidth    [UIScreen mainScreen].bounds.size.width
+/// 屏幕高
+#define kScreenHeight   [UIScreen mainScreen].bounds.size.height
 
 #ifndef weakify
 #if DEBUG
