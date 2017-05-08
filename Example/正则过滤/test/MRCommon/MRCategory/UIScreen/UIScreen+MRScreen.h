@@ -11,9 +11,9 @@
 @interface UIScreen (MRScreen)
 
 /// 屏幕宽度 Access to screen width
-+ (CGFloat)width;
++ (CGFloat)screenWidth;
 /// 屏幕高度 Access to the screen height
-+ (CGFloat)height;
++ (CGFloat)screenHeight;
 /// 分辨率 Get the screen resolution
 + (CGFloat)scale;
 

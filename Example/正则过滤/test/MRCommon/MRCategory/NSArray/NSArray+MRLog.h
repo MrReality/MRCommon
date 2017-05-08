@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (MRLog)
-/// 打印信息
+// 打印信息
 - (NSString *)mrLogDescription;
 
 @end
 
 @interface NSDictionary (MRLog)
-/// 打印
 - (NSString *)mrLogDescription;
 @end

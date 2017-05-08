@@ -10,11 +10,11 @@
 
 @implementation UIScreen (MRScreen)
 
-+ (CGFloat)width {
++ (CGFloat)screenWidth {
     return [UIScreen mainScreen].bounds.size.width;
 }
 
-+ (CGFloat)height {
++ (CGFloat)screenHeight {
     return [UIScreen mainScreen].bounds.size.height;
 }
 
