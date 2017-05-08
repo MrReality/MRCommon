@@ -38,6 +38,29 @@ typedef NS_ENUM(NSInteger, CommonOtherDoubleAlertType){
     CommonOtherCancelAndAdd     = 3      // 取消和添加 CancelAndAdd
 };
 
+typedef NS_ENUM(NSInteger, CommonOtherJumpType){
+
+    CommonOtherJumpTypeWiFi      ,       // 跳转到 WIFI 界面       jump to  Wifi
+    CommonOtherJumpTypeBluetooth ,       // 跳转到 蓝牙 界面       jump to  Bluetooth
+    CommonOtherJumpType4G        ,       // 跳转到 蜂窝数据 界面       jump to  Cellular data
+    CommonOtherJumpTypeCarrier   ,       // 跳转到 运营商 界面       jump to  Carrier
+    CommonOtherJumpTypeNotifi    ,       // 跳转到 通知 界面       jump to  notice
+    CommonOtherJumpTypeGeneral   ,       // 跳转到 通用 界面       jump to  General
+    CommonOtherJumpTypeKeyboard  ,       // 跳转到 键盘 界面       jump to  Keyboard
+    CommonOtherJumpTypeAccess    ,       // 跳转到 辅助功能 界面       jump to  auxiliary
+    CommonOtherJumpTypeLanguage  ,       // 跳转到 语言与地区 界面       jump to  Language and region
+    CommonOtherJumpTypeReset     ,       // 跳转到 还原 界面       jump to  Reset
+    CommonOtherJumpTypeWallpaper ,       // 跳转到 墙纸 界面       jump to  Wallpaper
+    CommonOtherJumpTypeSiri      ,       // 跳转到 Siri 界面       jump to  Siri
+    CommonOtherJumpTypePrivacy   ,       // 跳转到 隐私 界面       jump to  Privacy
+    CommonOtherJumpTypeLocation  ,       // 跳转到 定位 界面       jump to  Location
+    CommonOtherJumpTypeSafari    ,       // 跳转到 Safari 界面       jump to  Safari
+    CommonOtherJumpTypeMusic     ,       // 跳转到 Music 界面       jump to  Music
+    CommonOtherJumpTypeEQ        ,       // 跳转到 均衡器 界面       jump to  Music-EQ
+    CommonOtherJumpTypePhotos    ,       // 跳转到 照片 界面       jump to  Photos
+    CommonOtherJumpTypeFaceTime  ,       // 跳转到 FaceTime 界面       jump to  FaceTime
+};
+
 
 
 @interface MRCommonOther : NSObject
@@ -121,5 +144,8 @@ typedef NS_ENUM(NSInteger, CommonOtherDoubleAlertType){
  17 延时调用 Delay call
  */
 + (void)delayWithTime:(NSTimeInterval)time delayBlock:(DelayBlock)block;
+
+/// 18 跳转到 iphone 指定页面, 需要在 info 添加 URL types 字段, 并在 item0 里添加 URL Schemes 值为 prefs
++ (void)jumpWithType:(CommonOtherJumpType)type;
 
 @end
