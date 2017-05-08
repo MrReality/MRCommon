@@ -12,9 +12,9 @@
 /// 默认字体大小
 #define kBaseTextFont 16
 /// 默认未选中颜色
-#define kTextNormalColor  [UIColor colorWithRed:0.40 green:0.40 blue:0.40 alpha:1.00]
+#define kTextNormalColor  [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
 /// 默认选中颜色
-#define kTextSeletedColor [UIColor colorWithRed:0.96 green:0.56 blue:0.40 alpha:1.00]
+#define kTextSeletedColor [UIColor colorWithRed:0.00 green:0.73 blue:0.84 alpha:1.00]
 /// 边框颜色
 #define kBorderColor [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
 
@@ -125,6 +125,7 @@
         self.labelWidth = kScreenWidth / _options.count;
     }
     
+    
     self.contentSize = CGSizeMake(self.labelWidth * _options.count, self.mr_height);
     
     for (NSInteger i = 0; i < _options.count; i++) {
@@ -202,6 +203,9 @@
 //        [buttonArray addObject:button];
     }
     self.labelWidth += kSpace;
+    for (UILabel *label in self.labelArray) {
+        [label removeFromSuperview];
+    }
     self.labelArray = labelArray;
 //    self.buttonArray = buttonArray;
 
@@ -209,6 +213,8 @@
     self.showsHorizontalScrollIndicator = NO;
     // 垂直滑动条消失
     self.showsVerticalScrollIndicator = NO;
+    
+    [self layoutSubviews];
 }
 
 - (void)buttonAction:(UIButton *)button{
