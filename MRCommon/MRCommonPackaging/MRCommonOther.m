@@ -431,4 +431,35 @@
     }
 }
 
+/// 19 根据路径创建一个文件夹
++ (BOOL)creatFolderWithFile:(NSString *)file{
+    
+    BOOL isSuccess = NO;
+    BOOL isDir = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL existed = [fileManager fileExistsAtPath:file isDirectory:&isDir];
+    if ( !(isDir == YES && existed == YES) ){
+        
+       isSuccess = [fileManager createDirectoryAtPath:file withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return isSuccess;
+}
+
+/// 20 根据路径创建文件 第二个参数, 是否覆盖掉
++ (BOOL)creatFileWithPath:(NSString *)path isCover:(BOOL)isCover{
+
+    BOOL isSuccess = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath:path]) {         // 没有该文件
+        
+       isSuccess = [fileManager createFileAtPath:path contents:nil attributes:nil];
+    }else{                                              // 有该文件
+        if(isCover){
+            isSuccess = [fileManager createFileAtPath:path contents:nil attributes:nil];
+        }
+    }
+    return isSuccess;
+}
+
 @end
