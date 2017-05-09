@@ -17,4 +17,6 @@
 @property (nonatomic, strong) UIColor *backColor;
 /// 展示图片
 @property (nonatomic, strong) UIImage *showImage;
+/// 是否是没有边框
+@property (nonatomic, assign) BOOL isNoBorder;
 @end

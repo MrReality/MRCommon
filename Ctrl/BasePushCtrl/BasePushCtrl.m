@@ -8,6 +8,9 @@
 
 #import "BasePushCtrl.h"
 
+#define kButtonWidth  30
+#define kButtonHeight 30
+
 @interface BasePushCtrl () <UIGestureRecognizerDelegate>
 
 @end
@@ -32,15 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // 自定义返回按钮
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [button setImage:[UIImage imageNamed:@"return123.png"] forState:UIControlStateNormal];
-     [button setImage:[UIImage imageNamed:@"巡检-28"] forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.cancelButton];
     
     self.navigationItem.titleView = self.navigationLabel;
     
@@ -65,7 +60,7 @@
     if(!_sendButton){
         
         _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendButton.frame = CGRectMake(0, 0, 25, 25);
+        _sendButton.frame = CGRectMake(0, 0, kButtonWidth, kButtonHeight);
 //        [_sendButton setTitle:@"完成" forState:UIControlStateNormal];
         [_sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
@@ -75,6 +70,20 @@
         self.navigationItem.rightBarButtonItems = @[rightBarItem];
     }
     return _sendButton;
+}
+
+- (UIButton *)cancelButton{
+
+    if(!_cancelButton){
+        
+        // 自定义返回按钮
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kButtonWidth, kButtonHeight)];
+        [button setImage:[UIImage imageNamed:@"return123.png"] forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        _cancelButton = button;
+    }
+    return _cancelButton;
 }
 
 

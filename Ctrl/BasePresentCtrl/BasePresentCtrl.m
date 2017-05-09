@@ -9,6 +9,9 @@
 #import "BasePresentCtrl.h"
 #import "UIView+MRExtension.h"
 
+#define kButtonWidth  30
+#define kButtonHeight 30
+
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
@@ -49,8 +52,8 @@
         [UIView animateWithDuration:.5 animations:^{
             
             _navView.frame = CGRectMake(0, 0, width, 64);
-            _sendButton.frame = CGRectMake(width - 50, 20 + 7, 40, 30);
-            _cancelButton.frame = CGRectMake(10, 20 + 7, 40, 30);
+            _sendButton.frame = CGRectMake(width - kButtonWidth - 15, 20 + 7, kButtonWidth, kButtonHeight);
+            _cancelButton.frame = CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight);
             _line.frame = CGRectMake(0, 64 - .5, _navView.mr_width, .5);
             self.navigationLabel.mr_centerX = self.view.mr_centerX;
             self.navigationLabel.mr_y = 20 + 44 / 2 - self.navigationLabel.mr_height / 2;
@@ -60,8 +63,8 @@
         [UIView animateWithDuration:.5 animations:^{
             
             _navView.frame = CGRectMake(0, 0, width, 44);
-            _sendButton.frame = CGRectMake(width - 50, 7, 40, 30);
-            _cancelButton.frame = CGRectMake(10, 7, 40, 30);
+            _sendButton.frame = CGRectMake(width - kButtonWidth - 15, 7, kButtonWidth, kButtonHeight);
+            _cancelButton.frame = CGRectMake(15, 7, kButtonWidth, kButtonHeight);
             _line.frame = CGRectMake(0, 44 - .5, _navView.mr_width, .5);
             self.navigationLabel.mr_centerX = self.view.mr_centerX;
             self.navigationLabel.mr_y = 44 / 2 - self.navigationLabel.mr_height / 2;
@@ -91,7 +94,7 @@
     
     if(!_cancelButton){
         
-        _cancelButton = [[MRButton alloc] initWithFrame:CGRectMake(10, 20 + 7, 40, 30)];
+        _cancelButton = [[MRButton alloc] initWithFrame:CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight)];
         [self.navView addSubview:_cancelButton];
         [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -110,7 +113,7 @@
     if(!_sendButton){
         
         _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendButton.frame = CGRectMake(kScreenWidth - 50, 20 + 7, 40, 30);
+        _sendButton.frame = CGRectMake(kScreenWidth - kButtonWidth - 15, 20 + 7, kButtonWidth, kButtonHeight);
         [_sendButton setTitle:@"完成" forState:UIControlStateNormal];
         [_sendButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         

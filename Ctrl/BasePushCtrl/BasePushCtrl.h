@@ -11,6 +11,6 @@
 @interface BasePushCtrl : BaseCtrl
 
 @property (nonatomic, strong) UIButton *sendButton;
-
+@property (nonatomic, strong) UIButton *cancelButton;
 @end
 
