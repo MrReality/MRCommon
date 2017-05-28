@@ -359,4 +359,107 @@
     block();
 }
 
+/// 18 跳转到 iphone 指定页面, 需要在 info 添加 URL types 字段, 并在 item0 里添加 URL Schemes 值为 prefs
++ (void)jumpWithType:(CommonOtherJumpType)type{
+
+    NSString *str = nil;
+    switch (type) {
+        case CommonOtherJumpTypeWiFi:       
+            str = @"App-Prefs:root=WIFI";
+            break;
+        case CommonOtherJumpTypeBluetooth:
+            str = @"App-Prefs:root=Bluetooth";
+            break;
+        case CommonOtherJumpType4G:
+            str = @"App-Prefs:root=MOBILE_DATA_SETTINGS_ID";
+            break;
+        case CommonOtherJumpTypeCarrier:
+            str = @"App-Prefs:root=Carrier";
+            break;
+        case CommonOtherJumpTypeNotifi:
+            str = @"App-Prefs:root=NOTIFICATIONS_ID";
+            break;
+        case CommonOtherJumpTypeGeneral:
+            str = @"App-Prefs:root=General";
+            break;
+        case CommonOtherJumpTypeKeyboard:
+            str = @"App-Prefs:root=General&path=Keyboard";
+            break;
+        case CommonOtherJumpTypeAccess:
+            str = @"App-Prefs:root=General&path=ACCESSIBILITY";
+            break;
+        case CommonOtherJumpTypeLanguage:
+            str = @"App-Prefs:root=General&path=INTERNATIONAL";
+            break;
+        case CommonOtherJumpTypeReset:
+            str = @"App-Prefs:root=Reset";
+            break;
+        case CommonOtherJumpTypeWallpaper:
+            str = @"App-Prefs:root=Wallpaper";
+            break;
+        case CommonOtherJumpTypeSiri:
+            str = @"App-Prefs:root=SIRI";
+            break;
+        case CommonOtherJumpTypePrivacy:
+            str = @"App-Prefs:root=Privacy";
+            break;
+        case CommonOtherJumpTypeLocation:
+            str = @"App-Prefs:root=LOCATION_SERVICES";
+            break;
+        case CommonOtherJumpTypeSafari:
+            str = @"App-Prefs:root=SAFARI";
+            break;
+        case CommonOtherJumpTypeMusic:
+            str = @"App-Prefs:root=MUSIC";
+            break;
+        case CommonOtherJumpTypeEQ:
+            str = @"App-Prefs:root=MUSIC&path=com.apple.Music:EQ";
+            break;
+        case CommonOtherJumpTypePhotos:
+            str = @"App-Prefs:root=Photos";
+            break;
+        case CommonOtherJumpTypeFaceTime:
+            str = @"App-Prefs:root=FACETIME";
+            break;
+        default:
+            break;
+    }
+    
+    NSURL *url = [NSURL URLWithString:str];
+    if ([[UIApplication sharedApplication]canOpenURL:url]) {
+        [[UIApplication sharedApplication]openURL:url];
+    }
+}
+
+/// 19 根据路径创建一个文件夹
++ (BOOL)creatFolderWithFile:(NSString *)file{
+    
+    BOOL isSuccess = NO;
+    BOOL isDir = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL existed = [fileManager fileExistsAtPath:file isDirectory:&isDir];
+    if ( !(isDir == YES && existed == YES) ){
+        
+       isSuccess = [fileManager createDirectoryAtPath:file withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return isSuccess;
+}
+
+/// 20 根据路径创建文件 第二个参数, 是否覆盖掉
++ (BOOL)creatFileWithPath:(NSString *)path isCover:(BOOL)isCover{
+
+    BOOL isSuccess = NO;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath:path]) {         // 没有该文件
+        
+       isSuccess = [fileManager createFileAtPath:path contents:nil attributes:nil];
+    }else{                                              // 有该文件
+        if(isCover){
+            isSuccess = [fileManager createFileAtPath:path contents:nil attributes:nil];
+        }
+    }
+    return isSuccess;
+}
+
 @end

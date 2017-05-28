@@ -11,10 +11,11 @@
 
 /// 提示标题字体大小
 #define kBaseFont 14
-/// 提示标题字体颜色
-#define kBaseColor [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.00]
+/// 提示标题字体颜色未选中颜色
+#define kBaseColor [UIColor colorWithRed:0.54 green:0.54 blue:0.54 alpha:1.00]
 #define kSpace 5
-#define kBackGroundColor [UIColor whiteColor]
+#define kBackGroundColor [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.00]
+/// 点的颜色, 标题选中的颜色
 #define kPointColor [UIColor colorWithRed:0.51 green:0.84 blue:0.96 alpha:1.00]
 /// 提示图片宽
 #define kShowImgViewWidth 32
@@ -82,19 +83,12 @@
     [super layoutSubviews];
 
     NSInteger font;
-    UIColor *titleColor;
     UIColor *backGroundColor;
     
     if(_titleFont){
         font = self.titleFont;
     }else{
         font = kBaseFont;
-    }
-    
-    if(_titleColor){
-        titleColor = self.titleColor;
-    }else{
-        titleColor = kBaseColor;
     }
     
     if(_backColor){
@@ -107,7 +101,7 @@
     
     self.titleLabel.text = self.textField.placeholder;
     self.titleLabel.font = [UIFont systemFontOfSize:font];
-    self.titleLabel.textColor = titleColor;
+//    self.titleLabel.textColor = titleColor;
     [self.titleLabel sizeToFit];
     self.titleLabel.mr_y = 0;
     self.titleLabel.mr_x = 2 * kSpace;
@@ -124,6 +118,10 @@
     }
     if(!_showImage){
         self.textField.frame = CGRectMake(2 * kSpace, self.titleLabel.mr_y + self.titleLabel.mr_height + kSpace / 2, self.mr_width - 4 * kSpace, 35);
+    }
+    
+    if(_isNoBorder){
+        self.lineView.frame = CGRectMake(self.textField.mr_x, self.textField.mr_y + self.textField.mr_height - 3, self.textField.mr_width, 1);
     }
  
 //    self.textField.backgroundColor = backGroundColor;
@@ -143,20 +141,26 @@
         return;
     }
     
-    if(!_showImage){            // 没有框
+    if(!_showImage && !_isNoBorder){            // 没有框
         self.promptView.mr_size = CGSizeMake(0, 0);
         self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
         self.promptView.mr_centerY = self.textField.mr_centerY;
     }
     
-    if(_showImage){             // 有框
+    if(_showImage){                             // 有图片没框
+        self.promptView.mr_size = CGSizeMake(0, 0);
+        self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
+        self.promptView.mr_centerY = self.textField.mr_centerY;
+    }
+    
+    if(_isNoBorder){                            // 没图片没框
         self.promptView.mr_size = CGSizeMake(0, 0);
         self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
         self.promptView.mr_centerY = self.textField.mr_centerY;
     }
 
     [UIView animateWithDuration:.3 animations:^{
-        if(!_showImage){
+        if(!_showImage && !_isNoBorder){
         
             self.promptView.mr_x = self.textField.mr_x + 3 + rect.origin.x;
             self.promptView.mr_size = CGSizeMake(10, 10);
@@ -172,11 +176,18 @@
             self.promptView.hidden = NO;
         }
         
+        if(_isNoBorder){            // 没图片没框
+            self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
+            self.promptView.mr_size = CGSizeMake(10, 10);
+            self.promptView.mr_centerY = self.textField.mr_centerY;
+            self.promptView.hidden = NO;
+        }
+        
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:.2 animations:^{
             
-            if(!_showImage){
+            if(!_showImage && !_isNoBorder){
                 self.promptView.mr_x = self.textField.mr_x + 7 + rect.origin.x;
                 self.promptView.mr_size = CGSizeMake(2, 27);
                 self.promptView.mr_centerY = self.textField.mr_centerY;
@@ -187,25 +198,18 @@
                 self.promptView.mr_size = CGSizeMake(2, 25);
                 self.promptView.mr_centerY = self.textField.mr_centerY;
             }
+            if(_isNoBorder){
+                self.promptView.mr_x = self.textField.mr_x + rect.origin.x;
+                self.promptView.mr_size = CGSizeMake(2, 27);
+                self.promptView.mr_centerY = self.textField.mr_centerY;
+                self.promptView.hidden = NO;
+            }
          
         } completion:^(BOOL finished) {
             self.promptView.hidden = YES;
             self.textField.tintColor = kPointColor;
         }];
     }];
-}
-
-- (void)textDidChange{
-
-    if(self.textField.text.length){
-        [UIView animateWithDuration:.3 animations:^{
-            self.titleLabel.hidden = NO;
-        }];
-    }else{
-        [UIView animateWithDuration:.3 animations:^{
-            self.titleLabel.hidden = YES;
-        }];
-    }
 }
 
 // MARK: textField delegate
@@ -217,18 +221,57 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 
-    [self textDidChange];
     textField.tintColor = [UIColor whiteColor];
+    
+    if(textField.text.length){
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = NO;
+        }completion:^(BOOL finished) {
+            self.titleLabel.textColor = kBaseColor;
+        }];
+    }else{
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = YES;
+        }];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
 
-    [self textDidChange];
     [self textStateChange];
+    
+    if(self.textField.text.length){
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = NO;
+        }completion:^(BOOL finished) {
+            self.titleLabel.textColor = kPointColor;
+        }];
+    }else{
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = YES;
+        }];
+    }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
-
+    NSString *str = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSLog(@"%@", str);
+    
+    if(str.length){
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = NO;
+        } completion:^(BOOL finished) {
+            self.titleLabel.textColor = kPointColor;
+        }];
+    }else{
+        [UIView animateWithDuration:.3 animations:^{
+            self.titleLabel.hidden = YES;
+        }];
+    }
+    
+    return YES;
+}
 
 // MARK: 懒加载
 - (UITextField *)textField{
