@@ -14,6 +14,9 @@
 @property (nonatomic, strong) MRLabel *settingItem;
 @property (nonatomic, strong) MRLabel *nightItem;
 
+/// scrollView
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 @property (nonatomic, copy) SiderBarBlock block;
 @end
 
@@ -53,6 +56,9 @@
     _settingItem.mr_x =  50;
     
     _nightItem.mr_x = self.mr_width - 50 - _nightItem.mr_width;
+    
+    self.scrollView.frame = CGRectMake(0, self.mr_height / 4, self.mr_width, self.mr_height / 2);
+    self.scrollView.backgroundColor = [UIColor clearColor];
 }
 
 
@@ -60,6 +66,7 @@
     _items = @[].mutableCopy;
     CGFloat _gap = 15;
     
+    __block CGFloat height = 0;
     [models enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * _Nonnull stop) {
         
         MRLabel *item = [[MRLabel alloc] init];
@@ -70,14 +77,21 @@
         item.horizontalLayout = YES;
         item.autoresizingFlexibleSize = YES;
         item.model = [MRIconLabelModel modelWithTitle:text image:[UIImage imageNamed:[NSString stringWithFormat:@"sidebar_%@", text]]];
-        [self addSubview:item];
+        
+        [self.scrollView addSubview:item];
+        
+        
         [_items addObject:item];
         [item updateLayoutBySize:CGSizeMake(150, 50) finished:^(MRLabel *item) {
-            item.mr_y = (_gap + item.mr_height) * idx + 150;
+            item.mr_y = (_gap + item.mr_height) * idx;
             item.mr_centerX = self.mr_width / 2;
+            height += item.mr_height;
         }];
         item.tag = idx;
+        
         [item addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.scrollView.contentSize = CGSizeMake(self.mr_width, height);
     }];
 }
 
@@ -91,6 +105,17 @@
     if(_block){
         self.block(self, sender.tag);
     }
+}
+
+// MARK: 懒加载
+- (UIScrollView *)scrollView{
+
+    if(!_scrollView){
+        
+        _scrollView = [[UIScrollView alloc] init];
+        [self addSubview:_scrollView];
+    }
+    return _scrollView;
 }
 
 

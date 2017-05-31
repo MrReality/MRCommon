@@ -24,4 +24,9 @@
  */
 @property (nonatomic, strong) UIButton *sendButton;
 
+/// 是否不能横屏
+@property (nonatomic, assign) BOOL isNotLandscape;
+///// 是否隐藏电池栏
+//@property (nonatomic, assign) BOOL isHiddenStateBar;
+
 @end

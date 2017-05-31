@@ -10,4 +10,8 @@
 
 @interface BaseNavigation : UINavigationController
 
+/// 是否不能横屏
+@property (nonatomic, assign) BOOL isNotLandscape;
+/// 是否是白色电池条
+@property (nonatomic, assign) BOOL isWhiteStateBar;
 @end

@@ -9,7 +9,7 @@
 #import "BasePresentCtrl.h"
 #import "UIView+MRExtension.h"
 
-#define kButtonWidth  30
+#define kButtonWidth  40
 #define kButtonHeight 30
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -30,25 +30,50 @@
     [self.navView addSubview:self.cancelButton];
     [self.navView addSubview:self.sendButton];
     
-    // 监听横竖屏
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeRotate:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-    
-    [self changeRotate:nil];
+    [self changeRotate];
 }
 
-// 设置电池条颜色
-//- (UIStatusBarStyle)preferredStatusBarStyle{
-//    
-//    return UIStatusBarStyleLightContent;
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    if(self.isHiddenStateBar){      // 如果已经隐藏电池条, 则需要把电池条打开
+//        self.isHiddenStateBar = NO;
+//        [self prefersStatusBarHidden];
+//    }
 //}
 
+- (BOOL)shouldAutorotate{
+    
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    
+    if(self.isNotLandscape){    // 不能横屏
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskAll;
+}
+
 // 监听横竖屏
-- (void)changeRotate:(NSNotification*)noti {
+- (void)changeRotate{
+    
+    [super changeRotate];
+    
+    if(self.isNotLandscape){    // 不能横屏
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        _navView.frame = CGRectMake(0, 0, width, 64);
+        _sendButton.frame = CGRectMake(width - kButtonWidth - 15, 20 + 7, kButtonWidth, kButtonHeight);
+        _cancelButton.frame = CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight);
+        _line.frame = CGRectMake(0, 64 - .5, _navView.mr_width, .5);
+        self.navigationLabel.mr_centerX = width / 2;
+        self.navigationLabel.mr_y = 20 + 44 / 2 - self.navigationLabel.mr_height / 2;
+        return;
+    }
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationPortrait
         || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationPortraitUpsideDown) {
-        //竖屏
+        // 竖屏
         [UIView animateWithDuration:.5 animations:^{
             
             _navView.frame = CGRectMake(0, 0, width, 64);
@@ -59,7 +84,8 @@
             self.navigationLabel.mr_y = 20 + 44 / 2 - self.navigationLabel.mr_height / 2;
         }];
     } else {
-        //横屏
+        
+        // 横屏
         [UIView animateWithDuration:.5 animations:^{
             
             _navView.frame = CGRectMake(0, 0, width, 44);
@@ -71,6 +97,13 @@
         }];
     }
 }
+
+//- (BOOL)prefersStatusBarHidden{
+//    if(self.isHiddenStateBar){      // 隐藏电池条
+//        return YES;
+//    }
+//    return NO;
+//}
 
 // MARK: 懒加载
 // 类似于导航栏的 view

@@ -8,8 +8,11 @@
 
 #import "BaseNavigation.h"
 
-@interface BaseNavigation ()<UIGestureRecognizerDelegate>
-{
+/// 导航栏颜色
+#define kNavBackGroundColor [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00]
+
+@interface BaseNavigation ()<UIGestureRecognizerDelegate>{
+    
     id<UIGestureRecognizerDelegate> _delegate;
 }
 
@@ -21,9 +24,7 @@
     [super viewDidLoad];
     
     self.navigationBar.translucent = NO;
-    //    self.navigationBar.barTintColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.00];
-    self.navigationBar.barTintColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00];
-    
+    self.navigationBar.barTintColor = kNavBackGroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -32,18 +33,28 @@
     [self.view endEditing:YES];
 }
 
-// 设置电池颜色
-//- (UIStatusBarStyle)preferredStatusBarStyle{
-//    
-//    return UIStatusBarStyleLightContent;
-//}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-
+/// MARK: 屏幕旋转
+- (BOOL)shouldAutorotate{
+    return YES;
 }
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    
+    if(self.isNotLandscape){        // 不能横屏
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskAll;
+}
+
+/// MARK: 设置电池颜色
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    
+    if(self.isWhiteStateBar){       // 白色电池条
+        return UIStatusBarStyleLightContent;
+    }
+    return UIStatusBarStyleDefault;
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     
@@ -53,7 +64,7 @@
 //    self.interactivePopGestureRecognizer.delegate = _delegate;
 }
 
-#pragma mark - UIGestureRecognizerDelegate
+/// MARK: UIGestureRecognizerDelegate
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
 //    
 //    return self.navigationController.childViewControllers.count > 1;
