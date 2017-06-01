@@ -33,6 +33,13 @@
     [self changeRotate];
 }
 
+- (void)awakeFromNib{
+
+    [super awakeFromNib];
+    
+    [self changeRotate];
+}
+
 //- (void)viewWillDisappear:(BOOL)animated{
 //    [super viewWillDisappear:animated];
 //    if(self.isHiddenStateBar){      // 如果已经隐藏电池条, 则需要把电池条打开
