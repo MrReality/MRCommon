@@ -51,15 +51,15 @@
     self.navigationItem.titleView = self.navigationLabel;
     
     // 监听键盘通知
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShowWithNotifi:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHidenWithNotifi:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShowWithNotify:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHidenWithNotify:) name:UIKeyboardWillHideNotification object:nil];
     
     // 监听横竖屏
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeRotate) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
 /// MARK: 监听键盘
-- (void)keyboardWillShowWithNotifi:(NSNotification *)showNot{
+- (void)keyboardWillShowWithNotify:(NSNotification *)showNot{
 
     CGRect keyboardFrame = [showNot.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat upRectFrame = keyboardFrame.size.height;
@@ -77,7 +77,7 @@
     }];
 }
 
-- (void)keyboardWillHidenWithNotifi:(NSNotification *)hideNot{
+- (void)keyboardWillHidenWithNotify:(NSNotification *)hideNot{
     /// 键盘弹出时间
     CGFloat duration = [hideNot.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     

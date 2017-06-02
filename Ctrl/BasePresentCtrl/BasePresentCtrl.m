@@ -91,7 +91,7 @@
             self.navigationLabel.mr_y = 20 + 44 / 2 - self.navigationLabel.mr_height / 2;
         }];
     } else {
-        
+
         // 横屏
         [UIView animateWithDuration:.5 animations:^{
             
