@@ -41,10 +41,10 @@
     [super viewDidLoad];
     
     /// 创建 UI
-    [self _initUI];
+    [self _initBaseUI];
 }
 
-- (void)_initUI{
+- (void)_initBaseUI{
 
     /// 防止在 tableView ScrollView 等下自动偏移
     self.automaticallyAdjustsScrollViewInsets = NO;
