@@ -86,6 +86,10 @@
     }];
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
 /// 横竖屏切换调用的函数
 - (void)changeRotate{
     

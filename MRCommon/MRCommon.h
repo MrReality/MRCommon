@@ -18,6 +18,7 @@
 #import "UIScreen+MRScreen.h"
 #import "UIView+MRView.h"
 #import "NSDate+MRDate.h"
+#import "UIImage+MRScale.h"
 
 #import "MRSingleSwitch.h"
 #import "MRInputBoxView.h"
