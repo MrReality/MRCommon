@@ -33,17 +33,14 @@
     [self.view endEditing:YES];
 }
 
-/// MARK: 屏幕旋转
-- (BOOL)shouldAutorotate{
-    return YES;
+/// MARK: 屏幕旋转, 如果不想让屏幕旋转, 直接在 controller 中重写就好, 其他不用做
+-(BOOL)shouldAutorotate {
+    return [[self.viewControllers lastObject] shouldAutorotate];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    
-    if(self.isNotLandscape){        // 不能横屏
-        return UIInterfaceOrientationMaskPortrait;
-    }
-    return UIInterfaceOrientationMaskAll;
+
+    return [[self.viewControllers lastObject] supportedInterfaceOrientations];
 }
 
 /// MARK: 设置电池颜色
