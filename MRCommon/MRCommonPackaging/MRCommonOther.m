@@ -462,4 +462,35 @@
     return isSuccess;
 }
 
+
+/// 21 求两线的交点坐标
++ (CGPoint)testWithPointA:(CGPoint)pointA pointB:(CGPoint)pointB pointC:(CGPoint)pointC pointD:(CGPoint)pointD{
+
+    // 三角形 abc 面积的 2 倍
+    CGFloat area_abc = (pointA.x - pointC.x) * (pointB.y - pointC.y) - (pointA.y - pointC.y) * (pointB.x - pointC.x);
+    
+    // 三角形 abd 面积的 2 倍
+    CGFloat area_abd = (pointA.x - pointD.x) * (pointB.y - pointD.y) - (pointA.y - pointD.y) * (pointB.x - pointD.x);
+
+    // 面积符号相同则两点在线段同侧,不相交 (对点在线段上的情况,本例当作不相交处理);
+    if ( area_abc*area_abd >= 0 ) {
+        NSLog(@"两线不相交");
+        return CGPointZero;
+    }
+    // 三角形 cda 面积的2倍
+    CGFloat area_cda = (pointC.x - pointA.x) * (pointD.y - pointA.y) - (pointC.y - pointA.y) * (pointD.x - pointA.x);
+    // 三角形 cdb 面积的2倍
+    // 注意: 这里有一个小优化.不需要再用公式计算面积,而是通过已知的三个面积加减得出.
+    CGFloat area_cdb = area_cda + area_abc - area_abd ;
+    if(area_cda * area_cdb >= 0){
+        return CGPointZero;
+    }
+    
+    // 计算交点坐标
+    CGFloat t  = area_cda /(area_abd - area_abc);
+    CGFloat dx = t * (pointB.x - pointA.x);
+    CGFloat dy = t * (pointB.y - pointA.y);
+    return CGPointMake(pointA.x + dx, pointA.y + dy);
+}
+
 @end

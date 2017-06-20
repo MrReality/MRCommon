@@ -154,4 +154,7 @@ typedef NS_ENUM(NSInteger, CommonOtherJumpType){
 /// 20 根据路径创建文件 第二个参数, 是否覆盖掉
 + (BOOL)creatFileWithPath:(NSString *)path isCover:(BOOL)isCover;
 
+/// 21 求两线的交点坐标  ab 一条线, cd 一条线
++ (CGPoint)testWithPointA:(CGPoint)pointA pointB:(CGPoint)pointB pointC:(CGPoint)pointC pointD:(CGPoint)pointD;
+
 @end
