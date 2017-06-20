@@ -126,4 +126,21 @@
 /// 获取字符串中 phone 的 NSTextCheckingResult 数组, result.range 就是 phone 的range
 + (NSMutableArray *)findPhoneRangeWithString:(NSString *)string;
 
+/// 21 过滤中文
++ (NSString *)filterChineseWithString:(NSString *)string;
+
+/// 22 过滤特殊字符
++ (NSString *)filterCharacterWithString:(NSString *)string;
+
+/// 23 过滤最右边的空格
++ (NSString *)filterRightSpaceWithString:(NSString *)string;
+
+/// 24 过滤最右边的 0
++ (NSString *)filterRightZeroWithString:(NSString *)string;
+
+/// 25 只能输入数字和小数点
++ (NSString *)filterOnlyCanInputNumWithString:(NSString *)string;
+
+/// 26 清除多余的小数点, 和小数点后面的 0
++ (NSString *)cleanZeroWithString:(NSString *)string isCleanZero:(BOOL)isCleanZero;
 @end

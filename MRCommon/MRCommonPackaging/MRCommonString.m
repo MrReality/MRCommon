@@ -372,5 +372,135 @@
     return array;
 }
 
+/// 21 过滤中文
++ (NSString *)filterChineseWithString:(NSString *)string{
+
+    NSMutableString *str = [NSMutableString string];
+
+    for(int i = 0; i< [string length];i++){
+        int a = [string characterAtIndex:i];
+ 
+        if( a >= 0x4e00 && a <= 0x9fff){
+
+        }else{
+            NSString *currentString = [string substringWithRange:NSMakeRange(i, 1)];
+            str = [str stringByAppendingString:currentString].mutableCopy;
+        }
+    }
+    return str.copy;
+}
+
+/// 22 过滤特殊字符
++ (NSString *)filterCharacterWithString:(NSString *)string{
+    
+    NSString *character = @"@／：；（）￥「」＂、[]{}#%-*+=_\\|~＜＞$€^·'@#$%^&*()_+'\"";
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString: character];
+    NSString *str = [string stringByTrimmingCharactersInSet:set];
+    return str;
+}
+
+/// 23 过滤最右边的空格
++ (NSString *)filterRightSpaceWithString:(NSString *)string{
+
+    NSUInteger location = 0;
+    
+    NSCharacterSet *characterSet = [NSCharacterSet whitespaceCharacterSet];
+    NSUInteger length = string.length;
+    
+    unichar charBuffer[length];
+    
+    [string getCharacters:charBuffer];
+    
+    for (NSInteger i = length; i > 0; i--) {
+        if (![characterSet characterIsMember:charBuffer[i - 1]]) {
+            break;
+        }
+    }
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+/// 24 过滤最右边的 0
++ (NSString *)filterRightZeroWithString:(NSString *)string{
+    NSUInteger location = 0;
+    
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"0"];
+    NSUInteger length = string.length;
+    
+    unichar charBuffer[length];
+    
+    [string getCharacters:charBuffer];
+    
+    for (NSInteger i = length; i > 0; i--) {
+        
+        if (![characterSet characterIsMember:charBuffer[i - 1]]) {
+            
+            break;
+            
+        }
+    }
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+/// 25 只能输入数字和小数点
++ (NSString *)filterOnlyCanInputNumWithString:(NSString *)string{
+
+    NSMutableString *str = [NSMutableString string];
+    
+    for(int i = 0; i< [string length];i++){
+        int a = [string characterAtIndex:i];
+        
+        if( a >= 0x30 && a <= 0x39){
+            NSString *currentString = [string substringWithRange:NSMakeRange(i, 1)];
+            str = [str stringByAppendingString:currentString].mutableCopy;
+        }else if(a == 0x2E){        // 小数点
+            NSString *currentString = [string substringWithRange:NSMakeRange(i, 1)];
+            str = [str stringByAppendingString:currentString].mutableCopy;
+        }
+    }
+    
+    return [self cleanZeroWithString:str.copy isCleanZero:NO];
+}
+
+/// 清除多余的小数点
+/// 26 清除多余的小数点, 和小数点后面的 0
++ (NSString *)cleanZeroWithString:(NSString *)string isCleanZero:(BOOL)isCleanZero{
+    
+    BOOL isHavePoint = YES;
+    NSRange range = [string rangeOfString:@"."];
+    if(range.location != NSNotFound){
+        isHavePoint = YES;
+    }else{
+        return string;
+    }
+    
+    if(range.location != string.length - 1){
+        NSString *currentString = [string substringFromIndex:string.length - 1];
+        if([currentString isEqualToString:@"."]){
+            string = [string substringToIndex:string.length - 1];
+        }
+    }
+    
+    if(!isCleanZero){
+        return string;
+    }
+    
+    /// 有小数点, 就清除末尾的 0
+    NSInteger index = string.length - 1;
+    while (isHavePoint) {
+        NSString *str = [string substringFromIndex:index];
+        if([str isEqualToString:@"0"]){ // 有 0 就删除
+            string = [string substringToIndex:index];
+            index -= 1;
+        }else{                          // 没有 0 就返回
+            /// 如果小数点后面只有 0, 则删除小数点
+            NSString *str = [string substringFromIndex:index];
+            if([str isEqualToString:@"."]){
+                string = [string substringToIndex:index];
+            }
+            isHavePoint = NO;
+        }
+    }
+    return string;
+}
 
 @end
