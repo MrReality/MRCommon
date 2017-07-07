@@ -1,0 +1,7 @@
+target ‘test’ do
+
+pod ‘ReactiveObjC’
+pod ‘SVProgressHUD’
+pod ‘MJExtension’
+
+end
