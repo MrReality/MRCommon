@@ -86,9 +86,9 @@
     }];
 }
 
-- (BOOL)prefersStatusBarHidden{
-    return NO;
-}
+//- (BOOL)prefersStatusBarHidden{
+//    return NO;
+//}
 
 /// 横竖屏切换调用的函数
 - (void)changeRotate{
@@ -121,13 +121,13 @@
 }
 
 /// MARK:设置电池颜色
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    
-    if(self.isWhiteStateBar){       // 白色电池条
-        return UIStatusBarStyleLightContent;
-    }
-    return UIStatusBarStyleDefault;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    
+//    if(self.isWhiteStateBar){       // 白色电池条
+//        return UIStatusBarStyleLightContent;
+//    }
+//    return UIStatusBarStyleDefault;
+//}
 
 // MARK: textView delegate
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text{

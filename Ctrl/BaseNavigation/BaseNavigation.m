@@ -44,13 +44,13 @@
 }
 
 /// MARK: 设置电池颜色
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    
-    if(self.isWhiteStateBar){       // 白色电池条
-        return UIStatusBarStyleLightContent;
-    }
-    return UIStatusBarStyleDefault;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    
+//    if(self.isWhiteStateBar){       // 白色电池条
+//        return UIStatusBarStyleLightContent;
+//    }
+//    return UIStatusBarStyleDefault;
+//}
 
 
 - (void)viewWillDisappear:(BOOL)animated {
