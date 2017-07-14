@@ -19,7 +19,7 @@
 /// 中间的标题
 @property (nonatomic, strong) UILabel *navigationLabel;
 /// 是否是白色电池条
-@property (nonatomic, assign) BOOL isWhiteStateBar;
+//@property (nonatomic, assign) BOOL isWhiteStateBar;
 
 
 /// 弹出键盘时调用的函数, height: 键盘高度, duration: 键盘弹出的时间

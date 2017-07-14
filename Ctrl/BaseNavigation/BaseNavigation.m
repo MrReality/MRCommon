@@ -35,22 +35,17 @@
 
 /// MARK: 屏幕旋转, 如果不想让屏幕旋转, 直接在 controller 中重写就好, 其他不用做
 -(BOOL)shouldAutorotate {
-    return [[self.viewControllers lastObject] shouldAutorotate];
+    return self.viewControllers.lastObject.shouldAutorotate;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-
-    return [[self.viewControllers lastObject] supportedInterfaceOrientations];
+    return self.viewControllers.lastObject.supportedInterfaceOrientations;
 }
 
 /// MARK: 设置电池颜色
-//- (UIStatusBarStyle)preferredStatusBarStyle{
-//    
-//    if(self.isWhiteStateBar){       // 白色电池条
-//        return UIStatusBarStyleLightContent;
-//    }
-//    return UIStatusBarStyleDefault;
-//}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return self.viewControllers.lastObject.preferredStatusBarStyle;
+}
 
 
 - (void)viewWillDisappear:(BOOL)animated {
