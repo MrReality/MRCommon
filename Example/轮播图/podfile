@@ -1,0 +1,5 @@
+target ‘轮播图’ do
+
+pod ‘SVProgressHUD’
+
+end
