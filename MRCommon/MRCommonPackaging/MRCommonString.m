@@ -457,7 +457,6 @@
             str = [str stringByAppendingString:currentString].mutableCopy;
         }
     }
-    
     return [self cleanZeroWithString:str.copy isCleanZero:NO];
 }
 
@@ -501,6 +500,22 @@
         }
     }
     return string;
+}
+
+/// 27 只能输入数字
++ (NSString *)onlyNumWithString:(NSString *)string{
+
+    NSMutableString *str = [NSMutableString string];
+    
+    for(int i = 0; i< [string length];i++){
+        int a = [string characterAtIndex:i];
+        
+        if( a >= 0x30 && a <= 0x39){
+            NSString *currentString = [string substringWithRange:NSMakeRange(i, 1)];
+            str = [str stringByAppendingString:currentString].mutableCopy;
+        }
+    }
+    return str;
 }
 
 @end
