@@ -13,5 +13,10 @@
 @property (nonatomic, strong) UIButton *sendButton;
 /// 取消按钮
 @property (nonatomic, strong) UIButton *cancelButton;
+
+/// 返回按钮点击事件
+- (void)back:(UIButton *)button;
+
+
 @end
 
