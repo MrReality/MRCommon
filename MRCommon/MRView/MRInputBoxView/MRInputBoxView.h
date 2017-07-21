@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/// MARK: 高端输入框
 @interface MRInputBoxView : UIView
 /// 输入框
 @property (nonatomic, strong) UITextField *textField;

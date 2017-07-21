@@ -14,6 +14,7 @@
 typedef void(^CloseButtonClickBlock)(UIButton *button);
 typedef void(^ClickItemBlock)(MRCurtainView *curtainView, NSInteger index);
 
+/// MARK: 类似 QQ 空间式 窗帘弹窗
 @interface MRCurtainView : UIView
 
 

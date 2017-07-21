@@ -10,6 +10,7 @@
 
 typedef void(^SeletedIndex)(NSInteger tag, NSInteger index);
 
+/// MARK: 类似于淘宝的筛选框
 @protocol MRDropDelegate <NSObject>
 
 /**

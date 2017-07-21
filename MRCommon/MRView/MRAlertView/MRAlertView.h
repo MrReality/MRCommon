@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/// MARK: 普通弹窗
 @interface MRAlertView : UIView
 
 - (instancetype)init NS_UNAVAILABLE;    // NS_UNAVAILABLE 禁止掉这个方法

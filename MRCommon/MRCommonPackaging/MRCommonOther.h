@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, CommonOtherJumpType){
 };
 
 
-
+/// MARK: 处理杂项的类
 @interface MRCommonOther : NSObject
 
 /**

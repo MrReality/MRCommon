@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/// MARK: 加载 gif 的 view
 @interface MRGifView : UIView
 
 /// 创建 gif

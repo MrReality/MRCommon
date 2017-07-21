@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MRLabel.h"
 
+/// MARK: 铺满全屏的弹框
 @interface MRFullView : UIView
 
 @property (nonatomic, assign) CGSize itemSize;

@@ -10,6 +10,7 @@
 
 typedef void(^MRSignleSwitchBlock)(NSInteger index, NSInteger MRSingleSwitchTag);
 
+/// MARK: 单选框
 @interface MRSingleSwitch : UIView
 
 /**

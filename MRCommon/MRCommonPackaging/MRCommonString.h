@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/// MARK: 处理字符串的类
 @interface MRCommonString : NSObject
 
 /**

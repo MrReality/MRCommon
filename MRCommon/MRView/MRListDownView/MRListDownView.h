@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, ListDownImgType){
     ListDownImgTypeRight = 1  // 图片在标题后面  Pictures at the back of the title
 };
 
+/// MARK: 下拉栏, 一个按钮点开有好多选项
 @interface MRListDownView : UIView
 
 /**

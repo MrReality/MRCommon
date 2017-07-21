@@ -10,6 +10,7 @@
 /// selfTag 是 MRChangeView 的 tag, seletedIndex 是点击的索引
 typedef void(^MRChangeViewBlock)(NSInteger selfTag, NSInteger seletedIndex);
 
+/// MARK: 导航栏下面左右切换的 view
 @interface MRChangeView : UIScrollView
 /// 选项数组
 @property (nonatomic, strong) NSArray *options;
