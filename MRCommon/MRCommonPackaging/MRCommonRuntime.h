@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
+/// MARK: runtime 封装类
 @interface MRCommonRuntime : NSObject
 
 /**

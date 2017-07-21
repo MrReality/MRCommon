@@ -13,6 +13,7 @@
 
 typedef void(^SiderBarBlock)(MRSiderBarView *siderBarView, NSInteger index);
 
+/// MARK: 侧拉一个 view, 类似与 MMDrawcontroller
 @interface MRSiderBarView : UIView
 
 @property (nonatomic, strong) NSArray<NSString *> *models;

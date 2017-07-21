@@ -1,0 +1,6 @@
+target ‘PromptBox’ do
+
+pod ‘SVProgressHUD’
+
+
+end

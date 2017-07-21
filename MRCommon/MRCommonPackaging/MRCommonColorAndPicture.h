@@ -11,6 +11,7 @@
 
 typedef void(^TakePicture)(UIImage *image);
 
+/// MARK: 处理图片和颜色的类
 @interface MRCommonColorAndPicture : NSObject
 
 /**

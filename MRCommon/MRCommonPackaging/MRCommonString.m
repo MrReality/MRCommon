@@ -35,9 +35,9 @@
     NSString *CM = @"(^1(3[4-9]|4[7]|5[0-27-9]|7[8]|8[2-478])\\d{8}$)|(^1705\\d{7}$)";
     /**
      * 中国联通：China Unicom
-     * 130,131,132,155,156,185,186,145,176,1709
+     * 130,131,132,155,156,185,186,145,171,176,1709
      */
-    NSString *CU = @"(^1(3[0-2]|4[5]|5[56]|7[6]|8[56])\\d{8}$)|(^1709\\d{7}$)";
+    NSString *CU = @"(^1(3[0-2]|4[5]|5[56]|7[16]|8[56])\\d{8}$)|(^1709\\d{7}$)";
     /**
      * 中国电信：China Telecom
      * 133,153,180,181,189,177,1700
@@ -457,7 +457,6 @@
             str = [str stringByAppendingString:currentString].mutableCopy;
         }
     }
-    
     return [self cleanZeroWithString:str.copy isCleanZero:NO];
 }
 
@@ -501,6 +500,22 @@
         }
     }
     return string;
+}
+
+/// 27 只能输入数字
++ (NSString *)onlyNumWithString:(NSString *)string{
+
+    NSMutableString *str = [NSMutableString string];
+    
+    for(int i = 0; i< [string length];i++){
+        int a = [string characterAtIndex:i];
+        
+        if( a >= 0x30 && a <= 0x39){
+            NSString *currentString = [string substringWithRange:NSMakeRange(i, 1)];
+            str = [str stringByAppendingString:currentString].mutableCopy;
+        }
+    }
+    return str;
 }
 
 @end

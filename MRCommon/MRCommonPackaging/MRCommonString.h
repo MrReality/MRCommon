@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/// MARK: 处理字符串的类
 @interface MRCommonString : NSObject
 
 /**
@@ -143,4 +144,7 @@
 
 /// 26 清除多余的小数点, 和小数点后面的 0
 + (NSString *)cleanZeroWithString:(NSString *)string isCleanZero:(BOOL)isCleanZero;
+
+/// 27 只能输入数字
++ (NSString *)onlyNumWithString:(NSString *)string;
 @end
