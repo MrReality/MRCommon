@@ -112,6 +112,12 @@
 //    return NO;
 //}
 
+/// 返回按钮点击事件
+- (void)back:(UIButton *)button{
+
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 // MARK: 懒加载
 // 类似于导航栏的 view
 - (UIView *)navView{
@@ -130,19 +136,15 @@
 }
 
 // 取消按钮
-- (MRButton *)cancelButton{
+- (UIButton *)cancelButton{
     
     if(!_cancelButton){
         
-        _cancelButton = [[MRButton alloc] initWithFrame:CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight)];
+        _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight)];
         [self.navView addSubview:_cancelButton];
         [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        __weak typeof(self)weakSelf = self;
-        [_cancelButton buttonActionWith:^(MRButton *button) {
-            
-            [weakSelf dismissViewControllerAnimated:YES completion:NULL];
-        }];
+        [_cancelButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelButton;
 }

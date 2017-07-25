@@ -21,6 +21,10 @@
 
 @property (nonatomic, copy) DelayBlock block;
 
+@property (nonatomic, copy) CommonNetWorkBlock netBlock;
+
+@property (nonatomic, strong) Reachability *reachability;
+
 @end
 
 @implementation MRCommonOther
@@ -491,6 +495,47 @@
     CGFloat dx = t * (pointB.x - pointA.x);
     CGFloat dy = t * (pointB.y - pointA.y);
     return CGPointMake(pointA.x + dx, pointA.y + dy);
+}
+
+// 实时监听网络状态
++ (void)startMonitorWithType:(CommonNetWorkBlock)block{
+    [MRCommonOther shared].netBlock = block;
+    [[MRCommonOther shared] checkReachability];
+}
+
+/// 监听网络状态
+- (void)checkReachability{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
+    
+    [self updateInterfaceWithReachability:self.reachability];
+}
+
+- (void) reachabilityChanged:(NSNotification *)note{
+    
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    [self updateInterfaceWithReachability:curReach];
+}
+
+- (void)updateInterfaceWithReachability:(Reachability *)reachability{
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    if(status == ReachableViaWiFi){                 /// wifi
+        self.netBlock(CommonOtherTypeWifi);
+    }else if(status == NotReachable){               /// 没网
+        self.netBlock(CommonOtherTypeNoNetwork);
+    }else if(status == ReachableViaWWAN){   /// 3G
+        self.netBlock(CommonOtherType3G);
+    }
+}
+
+/// 取消监听
++ (void)endMonitor{
+    [[NSNotificationCenter defaultCenter] removeObserver:[MRCommonOther shared] name:kReachabilityChangedNotification object:nil];
+    [[MRCommonOther shared].reachability stopNotifier];
 }
 
 @end

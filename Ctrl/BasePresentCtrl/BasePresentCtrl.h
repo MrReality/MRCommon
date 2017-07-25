@@ -7,7 +7,6 @@
 //
 
 #import "BaseCtrl.h"
-#import "MRButton.h"
 
 @interface BasePresentCtrl : BaseCtrl
 
@@ -18,7 +17,7 @@
 /**
  取消按钮
  */
-@property (nonatomic, strong) MRButton *cancelButton;
+@property (nonatomic, strong) UIButton *cancelButton;
 /**
  发送按钮
  */
@@ -28,5 +27,8 @@
 @property (nonatomic, assign) BOOL isNotLandscape;
 ///// 是否隐藏电池栏
 //@property (nonatomic, assign) BOOL isHiddenStateBar;
+
+/// 返回按钮点击事件
+- (void)back:(UIButton *)button;
 
 @end
