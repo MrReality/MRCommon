@@ -89,16 +89,15 @@ EGLint GetContextRenderableType(EGLDisplay eglDisplay){
 
 /// MARK: 用指定参数创建一个窗口
 /**
- 用指定参数创建一个窗口
  @param esContext   应用上下文
  @param title       窗口标题栏名称
  @param width       要创建窗口的像素宽度
  @param height      要创建窗口的像素高度
  @param flags       窗口创建标志所用的位域
-    ES_WINDOW_RGB           --   指定颜色缓冲区应该有 R, G, B 通道
-    ES_WINDOW_ALPHA         --   指定颜色缓冲区应该有 Alpha
-    ES_WINDOW_DEPTH         --   指定应该创建深度缓冲区
-    ES_WINDOW_STENCIL       --   指定应该创建模板缓冲区
+    ES_WINDOW_RGB                    --   指定颜色缓冲区应该有 R, G, B 通道
+    ES_WINDOW_ALPHA                --   指定颜色缓冲区应该有 Alpha
+    ES_WINDOW_DEPTH                --   指定应该创建深度缓冲区
+    ES_WINDOW_STENCIL             --   指定应该创建模板缓冲区
     ES_WINDOW_MULTISAMPLE   --   制动应该创建多重采样缓冲区
  @return 如果创建成功 返回 GL_TRUE, 否则返回 GL_FALSE
  */
@@ -201,7 +200,6 @@ GLboolean ESUTIL_API esCreateWindow(ESContext *esContext, const char *title, GLi
 
 /// MARK: 注册用于渲染每帧的绘图回调函数
 /**
- 注册用于渲染每帧的绘图回调函数
  @param esContext 应用程序上下文
  @param drawFunc  用于渲染场景的绘图回调函数
  */
@@ -211,7 +209,6 @@ void ESUTIL_API esRegisterDrawFunc(ESContext *esContext, void(ESCALLBACK *drawFu
 
 /// MARK: 注册在关闭时调用的回调函数
 /**
- 注册在关闭时调用的回调函数
  @param esContext       应用程序上下文
  @param shutdownFunc    应用程序关闭时调用的函数
  */
@@ -221,7 +218,6 @@ void ESUTIL_API esRegisterShutdownFunc(ESContext *esContext, void(ESCALLBACK *sh
 
 /// MARK: 注册在用于每个时间步长上更新的更新回调函数
 /**
- 注册在用于每个时间步长上更新的更新回调函数
  @param esContext       应用程序上下文
  @param updateFunc      用于渲染场景的更新回调函数
  */
@@ -231,7 +227,6 @@ void ESUTIL_API esRegisterUpdateFunc(ESContext *esContext, void(ESCALLBACK *upda
 
 /// MARK: 注册键盘输入处理回调函数
 /**
- 注册键盘输入处理回调函数
  @param esContext       应用程序上下文
  @param keyFunc         应用程序处理键盘输入的回调函数
  */
@@ -241,7 +236,6 @@ void ESUTIL_API esRegisterKeyFunc(ESContext *esContext, void(ESCALLBACK *keyFunc
 
 /// MARK: 记录平台调试输出信息
 /**
- 记录平台调试输出信息
  @param formatStr 错误日志格式串
  */
 void ESUTIL_API esLogMessage(const char *formatStr, ...){
@@ -323,7 +317,6 @@ static int esFileRead(esFile *pFile, int bytesToRead, void *buffer){
 
 /// MARK: 从文件中加载一个 8 位, 24 位或者 32 位 TGA 图像
 /**
- 从文件中加载一个 8 位, 24 位或者 32 位 TGA 图像
  @param ioContext   上下文
  @param fileName    磁盘上的文件名
  @param width       以像素表示的加载图像宽度
@@ -342,7 +335,7 @@ char *ESUTIL_API esLoadTGA(void *ioContext, const char *fileName, int *width, in
     
     if(fp == NULL){
         // 打印错误信息
-        esLogMessage("esLoadTGA FAILED to load : { %s }\n", fileName);
+        esLogMessage("加载 tga 文件失败 : { %s }\n", fileName);
         return NULL;
     }
     

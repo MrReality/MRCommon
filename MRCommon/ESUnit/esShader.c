@@ -10,6 +10,8 @@
 #include "ESUtil.h"
 #include <stdlib.h>
 
+/// MARK: 处理着色器的文件
+
 
 /// MARK: 加载一个着色器, 检查编译错误, 将错误消息打印到输出日志
 /**
@@ -20,41 +22,34 @@
  */
 GLuint ESUTIL_API esLoadShader(GLenum type, const char *shaderSrc){
     
-    GLuint shader;
-    GLint compiled;
+    GLuint shader;          /// 着色器对象
+    GLint compiled;         /// 判断编译成功字段
 
-    // Create the shader object
+    // 创建着色器
     shader = glCreateShader(type);
-
     if(shader == 0){
         return 0;
     }
 
-    // Load the shader source
+    // 给着色器指定源码
     glShaderSource(shader, 1, &shaderSrc, NULL);
-
-    // Compile the shader
+    // 编译着色器
     glCompileShader(shader);
-
-    // Check the compile status
+    // 判断编译状态
     glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
 
-    if(!compiled){
+    if(!compiled){          /// 编译失败
        
         GLint infoLen = 0;
-
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
 
-        if(infoLen > 1){
+        if(infoLen > 1){        /// 打印错误信息
           
             char *infoLog = malloc(sizeof(char) * infoLen);
-
             glGetShaderInfoLog(shader, infoLen, NULL, infoLog);
-            esLogMessage("Error compiling shader:\n%s\n", infoLog);
-
+            esLogMessage("编译着色器失败:\n%s\n", infoLog);
             free(infoLog);
         }
-
         glDeleteShader(shader);
         return 0;
     }
@@ -70,63 +65,59 @@ GLuint ESUTIL_API esLoadShader(GLenum type, const char *shaderSrc){
  */
 GLuint ESUTIL_API esLoadProgram(const char *vertShaderSrc, const char *fragShaderSrc){
     
-    GLuint vertexShader;
-    GLuint fragmentShader;
-    GLuint programObject;
-    GLint  linked;
+    GLuint vertexShader;                /// 顶点着色器
+    GLuint fragmentShader;            /// 片段着色器
+    GLuint programObject;              /// 程序对象
+    GLint  linked;                             /// 判断是否链接成功字段
 
-    // Load the vertex/fragment shaders
+    // 加载一个着色器, 检查编译错误, 将错误消息打印到输出日志
+    /// 加载顶点着色器
     vertexShader = esLoadShader(GL_VERTEX_SHADER, vertShaderSrc);
 
-    if(vertexShader == 0){
+    if(vertexShader == 0){      /// 加载失败
         return 0;
     }
-
+    
+    /// 加载片段着色器
     fragmentShader = esLoadShader(GL_FRAGMENT_SHADER, fragShaderSrc);
-
-    if(fragmentShader == 0){
-       
+    if(fragmentShader == 0){        /// 如果片段着色器加载失败, 删除顶点着色器
         glDeleteShader(vertexShader);
         return 0;
     }
 
-    // Create the program object
+    // 创建程序对象
     programObject = glCreateProgram();
 
     if(programObject == 0){
         return 0;
     }
 
+    /// 给程序附加着色器
     glAttachShader(programObject, vertexShader);
     glAttachShader(programObject, fragmentShader);
 
-    // Link the program
+    // 链接程序
     glLinkProgram(programObject);
 
-    // Check the link status
+    // 检查链接状态
     glGetProgramiv(programObject, GL_LINK_STATUS, &linked);
 
-    if(!linked){
+    if(!linked){            /// 链接失败
        
         GLint infoLen = 0;
-
         glGetProgramiv(programObject, GL_INFO_LOG_LENGTH, &infoLen);
 
-        if(infoLen > 1){
-          
+        if(infoLen > 1){        /// 打印错误信息
             char *infoLog = malloc(sizeof(char) * infoLen);
-
             glGetProgramInfoLog(programObject, infoLen, NULL, infoLog);
-            esLogMessage("Error linking program:\n%s\n", infoLog);
-
+            esLogMessage("链接程序失败:\n%s\n", infoLog);
             free(infoLog);
         }
-
         glDeleteProgram(programObject);
         return 0;
     }
 
-    // Free up no longer needed shader resources
+    // 释放资源
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
