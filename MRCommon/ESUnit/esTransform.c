@@ -17,7 +17,6 @@
 
 /// MARK: 将 result 指定的矩阵乘以比例缩放矩阵, 并在 result 中返回新矩阵
 /**
- 将 result 指定的矩阵乘以比例缩放矩阵, 并在 result 中返回新矩阵
  @param result      输入矩阵
  @param sx          x 轴比例缩放因子
  @param sy          y 轴比例缩放因子
@@ -43,7 +42,6 @@ void ESUTIL_API esScale(ESMatrix *result, GLfloat sx, GLfloat sy, GLfloat sz){
 
 /// MARK: 将 result 指定的矩阵乘以平移矩阵, 并在 result 中返回新矩阵
 /**
- 将 result 指定的矩阵乘以平移矩阵, 并在 result 中返回新矩阵
  @param result      输入矩阵
  @param tx          x 轴平移因子
  @param ty          y 轴平移因子
@@ -59,7 +57,6 @@ void ESUTIL_API esTranslate(ESMatrix *result, GLfloat tx, GLfloat ty, GLfloat tz
 
 /// MARK: 将 result 指定矩阵乘以旋转矩阵, 并在 result 中返回新矩阵
 /**
- 将 result 指定矩阵乘以旋转矩阵, 并在 result 中返回新矩阵
  @param result      输入矩阵
  @param angle       指定旋转角度, 以度数表示
  @param x           指定向量的 x 坐标
@@ -121,7 +118,6 @@ void ESUTIL_API esRotate(ESMatrix *result, GLfloat angle, GLfloat x, GLfloat y, 
 
 /// MARK: 将 result 表示的矩阵乘以透视投影矩阵, 并在 result 中返回新矩阵
 /**
- 将 result 表示的矩阵乘以透视投影矩阵, 并在 result 中返回新矩阵
  @param result      输入矩阵
  @param left        指定左右裁剪平面坐标
  @param right       指定左右裁剪平面坐标
@@ -160,7 +156,6 @@ void ESUTIL_API esFrustum(ESMatrix *result, float left, float right, float botto
 
 /// MARK: 将 result 指定的矩阵乘以透视投影矩阵, 并在 result 中返回新的矩阵, 提供该函数是为了比直接使用 esFrustum 更简单第创建透视矩阵
 /**
- 将 result 指定的矩阵乘以透视投影矩阵, 并在 result 中返回新的矩阵, 提供该函数是为了比直接使用 esFrustum 更简单第创建透视矩阵
  @param result      输入矩阵
  @param fovy        指定以度数表示的视野, 应该在 0 - 180 之间
  @param aspect      渲染窗口的纵横比(宽度 / 高度)
@@ -179,7 +174,6 @@ void ESUTIL_API esPerspective(ESMatrix *result, float fovy, float aspect, float 
 
 /// MARK: 将 result 指定的矩阵乘以正交投影矩阵, 并在 result 中返回新矩阵
 /**
- 将 result 指定的矩阵乘以正交投影矩阵, 并在 result 中返回新矩阵
  @param result      输入矩阵
  @param left        指定左右裁剪平面坐标
  @param right       指定左右裁剪平面坐标
@@ -212,7 +206,6 @@ void ESUTIL_API esOrtho(ESMatrix *result, float left, float right, float bottom,
 
 /// MARK: 这个函数将 srcA 和 srcB 矩阵相乘, 并在 result 中返回结果 result = srcA x srcB
 /**
- 这个函数将 srcA 和 srcB 矩阵相乘, 并在 result 中返回结果 result = srcA x srcB
  @param result      指定返回相乘后矩阵的内存的指针
  @param srcA        进行乘法运算的输入矩阵
  @param srcB        进行乘法运算的输入矩阵
@@ -232,13 +225,11 @@ void ESUTIL_API esMatrixMultiply(ESMatrix *result, ESMatrix *srcA, ESMatrix *src
 
         tmp.m[i][3] = srcA->m[i][0] * srcB->m[0][3] + srcA->m[i][1] * srcB->m[1][3] + srcA->m[i][2] * srcB->m[2][3] + srcA->m[i][3] * srcB->m[3][3];
     }
-
     memcpy(result, &tmp, sizeof(ESMatrix));
 }
 
 /// MARK: 返回一个单位矩阵
 /**
- 返回一个单位矩阵
  @param result  指向返回单位矩阵的内存的指针
  */
 void ESUTIL_API esMatrixLoadIdentity(ESMatrix *result){
@@ -252,8 +243,6 @@ void ESUTIL_API esMatrixLoadIdentity(ESMatrix *result){
 
 /// MARK: 用眼睛位置, 实现向量和上向量生成一个视图变换矩阵
 /**
- 用眼睛位置, 实现向量和上向量生成一个视图变换矩阵
- 
  @param result      输出矩阵
  @param posX        指定眼睛位置的 X 坐标
  @param posY        指定眼睛位置的 Y 坐标
@@ -265,10 +254,7 @@ void ESUTIL_API esMatrixLoadIdentity(ESMatrix *result){
  @param upY         指定上向量
  @param upZ         指定上向量
  */
-void ESUTIL_API esMatrixLookAt(ESMatrix *result,
-               float posX,    float posY,    float posZ,
-               float lookAtX, float lookAtY, float lookAtZ,
-               float upX,     float upY,     float upZ){
+void ESUTIL_API esMatrixLookAt(ESMatrix *result, float posX,    float posY,    float posZ, float lookAtX, float lookAtY, float lookAtZ, float upX,     float upY,     float upZ){
     
     float axisX[3], axisY[3], axisZ[3];
     float length;

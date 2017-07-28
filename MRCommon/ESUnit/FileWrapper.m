@@ -15,7 +15,7 @@ const char *GetBundleFileName(const char *fileName){
     NSString* baseName   = [fileNameNS stringByDeletingPathExtension];
     NSString* extension  = [fileNameNS pathExtension];
     NSString *path = [[NSBundle mainBundle] pathForResource: baseName ofType: extension];
-    fileName = [path cStringUsingEncoding:1];
-    
+    fileName = [path cStringUsingEncoding:NSUTF8StringEncoding];
+
     return fileName;
 }

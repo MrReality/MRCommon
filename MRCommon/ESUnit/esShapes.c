@@ -12,37 +12,25 @@
 #include <string.h>
 #include <math.h>
 
+/// MARK: 处理形状的文件
+
 ///
 // Defines
 //
 #define ES_PI (3.14159265f)
 
-//////////////////////////////////////////////////////////////////
-//
-//  Private Functions
-//
-//
 
-
-
-//////////////////////////////////////////////////////////////////
-//
-//  Public Functions
-//
-//
-
+/// MARK: 为一个球体生成几何形状, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLE_STRIP 生成索引列表
 /**
- 为一个球体生成几何形状, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLE_STRIP 生成索引列表
- @param numSlices   球体中的垂直和水平切片数量
- @param radius      弧度
- @param vertices    如果不为 NULL, 则包含 float3 位置数组
- @param normals     如果不为 NULL, 则包含 float3 法线数组
- @param texCoords   如果不为 NULL, 则包含 float2 textCoords 数组
- @param indices     如果不为 NULL, 则包含三角形条带索引数组
- @return            以 GL_TRIANGLE_STRIP 的形式渲染缓冲区时需要的索引数组(如果索引数组不为 NULL, 则为其中保存的索引数量)
+ @param numSlices       球体中的垂直和水平切片数量
+ @param radius              弧度
+ @param vertices           如果不为 NULL, 则包含 float3 位置数组
+ @param normals           如果不为 NULL, 则包含 float3 法线数组
+ @param texCoords       如果不为 NULL, 则包含 float2 textCoords 数组
+ @param indices             如果不为 NULL, 则包含三角形条带索引数组
+ @return  以 GL_TRIANGLE_STRIP 的形式渲染缓冲区时需要的索引数组(如果索引数组不为 NULL, 则为其中保存的索引数量)
  */
-int ESUTIL_API esGenSphere(int numSlices, float radius, GLfloat **vertices, GLfloat **normals,
-                             GLfloat **texCoords, GLuint **indices){
+int ESUTIL_API esGenSphere(int numSlices, float radius, GLfloat **vertices, GLfloat **normals, GLfloat **texCoords, GLuint **indices){
     
     int   i;
     int   j;
@@ -51,7 +39,7 @@ int ESUTIL_API esGenSphere(int numSlices, float radius, GLfloat **vertices, GLfl
     int   numIndices = numParallels * numSlices * 6;
     float angleStep = (2.0f * ES_PI) / ((float)numSlices);
 
-    // Allocate memory for buffers
+    // 分配内存空间
     if(vertices != NULL){
         *vertices = malloc(sizeof(GLfloat) * 3 * numVertices);
     }
@@ -75,21 +63,18 @@ int ESUTIL_API esGenSphere(int numSlices, float radius, GLfloat **vertices, GLfl
             int vertex = (i * (numSlices + 1) + j) * 3;
 
             if(vertices){
-             
                 (*vertices)[vertex + 0] = radius * sinf(angleStep * (float)i) * sinf(angleStep * (float)j);
                 (*vertices)[vertex + 1] = radius * cosf(angleStep * (float)i);
                 (*vertices)[vertex + 2] = radius * sinf(angleStep * ( float )i) * cosf(angleStep * (float)j);
             }
 
             if(normals){
-             
                 (*normals)[vertex + 0] = (*vertices)[vertex + 0] / radius;
                 (*normals)[vertex + 1] = (*vertices)[vertex + 1] / radius;
                 (*normals)[vertex + 2] = (*vertices)[vertex + 2] / radius;
             }
 
             if(texCoords){
-             
                 int texIndex = (i * (numSlices + 1) + j) * 2;
                 (*texCoords)[texIndex + 0] = (float)j / (float )numSlices;
                 (*texCoords)[texIndex + 1] = (1.0f - (float)i) / (float)(numParallels - 1);
@@ -121,13 +106,12 @@ int ESUTIL_API esGenSphere(int numSlices, float radius, GLfloat **vertices, GLfl
 
 /// MARK: 为立方体生成几何形状, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLES 生成索引列表
 /**
- 为立方体生成几何形状, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLES 生成索引列表
- @param scale       立方体的大小, 单位立方体为 1.0
- @param vertices    如果不为 NULL, 则包含 float3 位置数组
- @param normals     如果不为 NULL, 则包含 float3 法线数组
- @param texCoords   如果不为 NULL, 则包含 float2 textCoords 数组
- @param indices     如果不为 NULL, 则包含三角形列表索引数组
- @return            以 GL_TRIANGLES 形式渲染缓冲区所需的索引数量(如果索引数组不为NULL, 则为其中保存的索引数组)
+ @param scale               立方体的大小, 单位立方体为 1.0
+ @param vertices           如果不为 NULL, 则包含 float3 位置数组
+ @param normals           如果不为 NULL, 则包含 float3 法线数组
+ @param texCoords       如果不为 NULL, 则包含 float2 textCoords 数组
+ @param indices            如果不为 NULL, 则包含三角形列表索引数组
+ @return   以 GL_TRIANGLES 形式渲染缓冲区所需的索引数量(如果索引数组不为NULL, 则为其中保存的索引数组)
  */
 int ESUTIL_API esGenCube(float scale, GLfloat **vertices, GLfloat **normals, GLfloat **texCoords, GLuint **indices){
     
@@ -219,7 +203,7 @@ int ESUTIL_API esGenCube(float scale, GLfloat **vertices, GLfloat **normals, GLf
       1.0f, 0.0f,
     };
 
-    // Allocate memory for buffers
+    // 分配内存
     if(vertices != NULL){
        
         *vertices = malloc(sizeof(GLfloat) * 3 * numVertices);
@@ -231,13 +215,11 @@ int ESUTIL_API esGenCube(float scale, GLfloat **vertices, GLfloat **normals, GLf
     }
 
     if(normals != NULL){
-       
         *normals = malloc(sizeof (GLfloat) * 3 * numVertices);
         memcpy(*normals, cubeNormals, sizeof(cubeNormals));
     }
 
     if(texCoords != NULL){
-       
         *texCoords = malloc(sizeof(GLfloat) * 2 * numVertices);
         memcpy(*texCoords, cubeTex, sizeof(cubeTex)) ;
     }
@@ -270,18 +252,17 @@ int ESUTIL_API esGenCube(float scale, GLfloat **vertices, GLfloat **normals, GLf
 
 /// MARK: 生成由三角形组成的方格网, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLES 生成索引列表
 /**
- 生成由三角形组成的方格网, 为顶点数据分配内存并将结果保存在数组中, 为 GL_TRIANGLES 生成索引列表
- @param size        立方体大小, 单位立方体为 1.0
+ @param size          立方体大小, 单位立方体为 1.0
  @param vertices    如果不为 NULL, 则包含 float3 位置数组
  @param indices     如果不为 NULL, 则包含三角形列表索引数组
- @return            以 GL_TRIANGLES 形式渲染缓冲区所需的索引数量(如果索引数组不为 NULL, 则为其中保存的索引数量)
+ @return     以 GL_TRIANGLES 形式渲染缓冲区所需的索引数量(如果索引数组不为 NULL, 则为其中保存的索引数量)
  */
 int ESUTIL_API esGenSquareGrid(int size, GLfloat **vertices, GLuint **indices){
     
     int i, j;
     int numIndices = (size - 1) * (size - 1) * 2 * 3;
 
-    // Allocate memory for buffers
+    // 分配内存
     if(vertices != NULL){
        
         int numVertices = size * size;
