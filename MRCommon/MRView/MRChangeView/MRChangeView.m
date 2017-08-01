@@ -12,9 +12,9 @@
 /// 默认字体大小
 #define kBaseTextFont 16
 /// 默认未选中颜色
-#define kTextNormalColor  [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
+#define kTextNormalColor  [UIColor colorWithRed:0.20 green:0.20 blue:0.20 alpha:1.00]
 /// 默认选中颜色
-#define kTextSeletedColor [UIColor colorWithRed:0.00 green:0.73 blue:0.84 alpha:1.00]
+#define kTextSeletedColor [UIColor colorWithRed:0.20 green:0.76 blue:0.49 alpha:1.00]
 /// 边框颜色
 #define kBorderColor [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
 
@@ -217,6 +217,21 @@
     [self layoutSubviews];
 }
 
+- (void)setChangeIndex:(NSInteger)changeIndex{
+
+    for (UILabel *label in self.labelArray) {
+        label.textColor = self.normalColor;
+    }
+    if(changeIndex < self.labelArray.count){
+        UILabel *label = self.labelArray[changeIndex];
+        
+        [UIView animateWithDuration:.2 animations:^{
+            label.textColor = self.seletedColor;
+            self.lineView.mr_centerX = label.mr_centerX;
+        }];
+    }
+}
+
 - (void)buttonAction:(UIButton *)button{
 
     NSInteger index = button.tag - 500;
@@ -241,7 +256,8 @@
 
     if(!_lineView){
     
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 2)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 3)];
+        _lineView.layer.cornerRadius = 1.5;
         [self addSubview:_lineView];
         
 //        self.topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mr_width, .5)];

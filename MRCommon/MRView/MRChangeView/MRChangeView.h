@@ -20,6 +20,9 @@ typedef void(^MRChangeViewBlock)(NSInteger selfTag, NSInteger seletedIndex);
 /// 初始索引
 @property (nonatomic, assign) NSInteger InitializeIndex;
 
+/// 切换为哪个索引
+@property (nonatomic, assign) NSInteger changeIndex;
+
 /// 点击调用的 block
 - (void)seletedIndex:(MRChangeViewBlock)block;
 
