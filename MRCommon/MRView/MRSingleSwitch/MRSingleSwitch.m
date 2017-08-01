@@ -32,6 +32,10 @@
  切换按钮图片数组
  */
 @property (nonatomic, strong) NSMutableArray *imgViewArray;
+/// 按钮数组
+@property (nonatomic, strong) NSMutableArray *buttonArray;
+/// label 数组
+@property (nonatomic, strong) NSMutableArray *labelArray;
 /**
  是否设置默认选项了
  */
@@ -51,6 +55,12 @@
         for (NSInteger i = 0; i < self.buttonCount; i++) {
             UIImageView *imgView = [[UIImageView alloc] init];
             [self.imgViewArray addObject:imgView];
+            
+            UILabel *label = [[UILabel alloc] init];
+            [self.labelArray addObject:label];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.buttonArray addObject:button];
         }
     }
     return self;
@@ -109,7 +119,8 @@
     CGFloat labelWidth = buttonWidth - kButtonSpace - imgWidth;
     for(NSInteger i = 0; i < self.buttonCount; i++){
 
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kButtonSpace + imgWidth + kSpace + i * buttonWidth + i * kButtonSpace, self.mr_height / 2 - kLabelHeight / 2, labelWidth, kLabelHeight)];
+        UILabel *label = self.labelArray[i];
+        label.frame = CGRectMake(kButtonSpace + imgWidth + kSpace + i * buttonWidth + i * kButtonSpace, self.mr_height / 2 - kLabelHeight / 2, labelWidth, kLabelHeight);
         label.textColor = titleColor;
         label.font = [UIFont systemFontOfSize:titleFont];
         label.text = self.nameArray[i];
@@ -119,14 +130,13 @@
     // 按钮
     for (NSInteger i = 0; i < self.buttonCount; i++) {
 
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *button = self.buttonArray[i];
         button.frame = CGRectMake(kButtonSpace + i * buttonWidth + i * kButtonSpace, self.bounds.size.height / 2 - kSingleButtonHeight / 2, buttonWidth, kSingleButtonHeight);
         button.tag = 900 + i;
         button.backgroundColor = [UIColor clearColor];
         [self addSubview:button];
         [button addTarget:self action:@selector(buttonSeleted:) forControlEvents:UIControlEventTouchUpInside];
     }
-
     self.mr_width = self.buttonCount * (buttonWidth + kButtonSpace);
 }
 
@@ -174,5 +184,22 @@
     }
     return _imgViewArray;
 }
+
+- (NSMutableArray *)buttonArray{
+
+    if(!_buttonArray){
+        _buttonArray = [NSMutableArray array];
+    }
+    return _buttonArray;
+}
+
+- (NSMutableArray *)labelArray{
+
+    if(!_labelArray){
+        _labelArray = [NSMutableArray array];
+    }
+    return _labelArray;
+}
+
 
 @end
