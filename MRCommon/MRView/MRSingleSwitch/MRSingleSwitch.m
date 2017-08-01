@@ -153,7 +153,9 @@
     UIImageView *imgView = self.imgViewArray[index];
     imgView.image = [UIImage imageNamed:kSeleImgName];
 
-    self.block(index, self.tag);
+    if(self.block){
+        self.block(index, self.tag);
+    }
 }
 
 - (void)didseleted:(MRSignleSwitchBlock)block{
