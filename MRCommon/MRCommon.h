@@ -45,6 +45,18 @@
 /// 屏幕高
 #define kScreenHeight   [UIScreen mainScreen].bounds.size.height
 
+#define kIs_iPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define kIs_iPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+/// 真实屏幕高
+#define kScreenRealHeight (MAX(kScreenWidth, kScreenHeight))
+/// 真实屏幕宽
+#define kScreenRealWidth (MIN(kScreenWidth, kScreenHeight))
+
+#define kIs_iPhone_5 (kIs_iPhone && kScreenRealHeight == 568.0)
+#define kIs_iPhone_6 (kIs_iPhone && kScreenRealHeight == 667.0)
+#define kIs_iPhone_6P (kIs_iPhone && kScreenRealHeight == 736.0)
+
 #ifndef weakify
 #if DEBUG
 #if __has_feature(objc_arc)
