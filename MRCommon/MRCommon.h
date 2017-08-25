@@ -37,7 +37,7 @@
 #import "MRCommonRuntime.h"
 
 // 导航栏
-#define kNavigationHeight   64
+#define kNavigationHeight   (kIsVerticalScreen? 64 : 32)
 /// tableBar
 #define kTabBarHeight       49
 /// 屏幕宽
