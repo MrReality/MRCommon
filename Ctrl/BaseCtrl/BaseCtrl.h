@@ -25,6 +25,9 @@
 /// 弹出键盘时调用的函数, height: 键盘高度, duration: 键盘弹出的时间
 - (void)keyboardWillShowWithKeyBoardHeight:(CGFloat)height andDuration:(CGFloat)duration;
 
+/// 键盘将要消失的函数
+- (void)keyboardWillHiddenWithDuration:(CGFloat)duration;
+
 /// 横竖屏切换调用的函数
 - (void)changeRotate;
 

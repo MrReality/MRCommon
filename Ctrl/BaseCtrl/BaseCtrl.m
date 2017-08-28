@@ -80,7 +80,12 @@
 - (void)keyboardWillHidenWithNotify:(NSNotification *)hideNot{
     /// 键盘弹出时间
     CGFloat duration = [hideNot.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
+    [self keyboardWillHiddenWithDuration:duration];
+}
+
+/// 键盘将要消失的函数
+- (void)keyboardWillHiddenWithDuration:(CGFloat)duration{
+
     [UIView animateWithDuration:duration animations:^{
         self.view.transform = CGAffineTransformIdentity;
     }];
