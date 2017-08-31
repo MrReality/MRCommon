@@ -45,6 +45,11 @@
 /// 屏幕高
 #define kScreenHeight   [UIScreen mainScreen].bounds.size.height
 
+/// 是否是横屏
+#define kIslandscapeScreen (kScreenWidth > kScreenHeight)
+/// 是否是竖屏
+#define kIsVerticalScreen (kScreenHeight > kScreenWidth)
+
 #define kIs_iPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define kIs_iPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
