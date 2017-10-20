@@ -289,7 +289,7 @@
     UIGraphicsEndImageContext();
 
     CGImageRelease(imageRef);
-    CGContextRelease(context);
+//    CGContextRelease(context);
 
     return image;
 }
