@@ -33,6 +33,20 @@
     [self.view endEditing:YES];
 }
 
+- (void)setTransparenceNavigationBar:(BOOL)transparenceNavigationBar{
+    if(transparenceNavigationBar == true){          /// 让导航栏透明
+        self.navigationBar.translucent = YES;
+        self.navigationBar.barTintColor = [UIColor clearColor];
+        self.navigationBar.tintColor = [UIColor clearColor];
+        [self.navigationBar setShadowImage:[UIImage new]];
+        self.navigationBar.barStyle = UIBarStyleBlack;
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    }else{                                                              /// 不让导航栏透明
+        self.navigationBar.translucent = NO;
+        self.navigationBar.barTintColor = kNavBackGroundColor;
+    }
+}
+
 /// MARK: 屏幕旋转, 如果不想让屏幕旋转, 直接在 controller 中重写就好, 其他不用做
 -(BOOL)shouldAutorotate {
     return self.viewControllers.lastObject.shouldAutorotate;

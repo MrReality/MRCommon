@@ -12,4 +12,8 @@
 
 /// 是否是白色电池条
 @property (nonatomic, assign) BOOL isWhiteStateBar;
+
+/// 让导航栏透明
+@property (nonatomic, assign) BOOL transparenceNavigationBar;
+
 @end
