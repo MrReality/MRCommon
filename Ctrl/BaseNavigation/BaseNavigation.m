@@ -8,6 +8,9 @@
 
 #import "BaseNavigation.h"
 
+/// 当前设备版本
+#define kDeviceVerson ([[UIDevice currentDevice].systemVersion floatValue])
+
 /// 导航栏颜色
 #define kNavBackGroundColor [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.00]
 
@@ -25,7 +28,12 @@
     
     self.navigationBar.translucent = NO;
     self.navigationBar.barTintColor = kNavBackGroundColor;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    if(kDeviceVerson < 11){         /// iOS 11 以下
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }else{
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

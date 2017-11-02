@@ -36,7 +36,6 @@
     [super viewDidLoad];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.cancelButton];
-    
     self.navigationItem.titleView = self.navigationLabel;
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
