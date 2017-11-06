@@ -50,6 +50,7 @@
     /// 防止在 tableView ScrollView 等下自动偏移
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.titleView = self.navigationLabel;
+    self.allowRotation = NO;
     
     // 监听键盘通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShowWithNotify:) name:UIKeyboardWillShowNotification object:nil];
@@ -57,6 +58,16 @@
     
     // 监听横竖屏
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeRotate) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    if (self.allowRotation) 
+        return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 /// MARK: 监听键盘
