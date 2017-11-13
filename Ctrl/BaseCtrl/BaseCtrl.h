@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WFLBaseViewController.h"
+#import "MRGifView.h"
 
-#import <UIKit/UIKit.h>
-
-@interface BaseCtrl : UIViewController 
+@interface BaseCtrl : WFLBaseViewController
 
 /// 没有数据时, 给出的文本提示
 @property (nonatomic, strong) UILabel *nonLabel;
 /// 没有数据时, 给出的图片提示
 @property (nonatomic, strong) UIImageView *nonImgView;
+/// 没有数据时, 给出的 gif 展示提示
+@property (nonatomic, strong) MRGifView *nonGifView;
 /// 中间的标题
 @property (nonatomic, strong) UILabel *navigationLabel;
 /// 是否是白色电池条

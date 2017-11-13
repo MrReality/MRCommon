@@ -209,6 +209,19 @@
     return _navigationLabel;
 }
 
+- (MRGifView *)nonGifView{
+    if(!_nonGifView){
+        NSURL *gifUrl = [[NSBundle mainBundle] URLForResource:@"加载中" withExtension:@"gif"];
+        /// 配置 gif
+        _nonGifView = [[MRGifView alloc] initWithFrame:self.nonImgView.bounds fileURL:gifUrl];
+        
+        _nonGifView.backgroundColor = [UIColor clearColor];
+        _nonGifView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self.nonImgView addSubview:_nonGifView];
+    }
+    return _nonGifView;
+}
+
 
 
 @end
