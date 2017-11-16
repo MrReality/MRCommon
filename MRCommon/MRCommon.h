@@ -37,7 +37,10 @@
 #import "MRCommonRuntime.h"
 
 // 导航栏
-#define kNavigationHeight   (kIsVerticalScreen? 64 : 32)
+#define kNavigationHeight   (kIs_iPhone_X ? (kIsVerticalScreen? 88 : 32) : (kIsVerticalScreen? 64 : 32))
+
+#define kUserDefault [NSUserDefaults standardUserDefaults]
+
 /// tableBar
 #define kTabBarHeight       49
 /// 屏幕宽
@@ -61,6 +64,7 @@
 #define kIs_iPhone_5 (kIs_iPhone && kScreenRealHeight == 568.0)
 #define kIs_iPhone_6 (kIs_iPhone && kScreenRealHeight == 667.0)
 #define kIs_iPhone_6P (kIs_iPhone && kScreenRealHeight == 736.0)
+#define kIs_iPhone_X (kIs_iPhone && kScreenRealHeight == 812.0)
 
 #ifndef weakify
 #if DEBUG
