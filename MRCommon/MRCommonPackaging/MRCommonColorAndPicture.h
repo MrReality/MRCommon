@@ -32,7 +32,7 @@ typedef void(^TakePicture)(UIImage *image);
 /**
  4 压缩图片到指定文件大小 Compressed image to the specified file size
  */
-+ (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
++ (UIImage *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size;
 
 /**
  5 对图片进行模糊处理 Blurred images

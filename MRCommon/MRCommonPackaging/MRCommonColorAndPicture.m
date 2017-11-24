@@ -122,31 +122,24 @@
 
 
 //压缩图片到指定文件大小
-+ (NSData *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size{
++ (UIImage *)compressOriginalImage:(UIImage *)image toMaxDataSizeKBytes:(CGFloat)size{
 
-    NSData *data = UIImageJPEGRepresentation(image, 1.0);
-
-    CGFloat dataKBytes = data.length/1000.0;
-
-    CGFloat maxQuality = 0.9f;
-
-    CGFloat lastData = dataKBytes;
-
-    while (dataKBytes > size && maxQuality > 0.01f) {
-
-        maxQuality = maxQuality - 0.01f;
-
-        data = UIImageJPEGRepresentation(image, maxQuality);
-
-        dataKBytes = data.length/1000.0;
-
-        if (lastData == dataKBytes) {
-            break;
-        }else{
-            lastData = dataKBytes;
+    NSData * imageData = UIImageJPEGRepresentation(image,1);
+    double lenth = imageData.length;
+    if(lenth > size){    // 大于 1M
+        double imgLenth = lenth;
+        UIImage *smallImage = image;
+        while (imgLenth > size) {
+            
+            CGFloat fixelW = CGImageGetWidth(smallImage.CGImage);
+            CGFloat fixelH = CGImageGetHeight(smallImage.CGImage);
+            smallImage = [self imageCompressForSize:smallImage targetSize:CGSizeMake(fixelW / 2, fixelH / 2)];
+            NSData * imageData = UIImageJPEGRepresentation(smallImage, 1);
+            imgLenth = imageData.length;
         }
+        return smallImage;
     }
-    return data;
+    return image;
 }
 
 #pragma mark - 对图片进行模糊处理
