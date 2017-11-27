@@ -8,12 +8,13 @@
 
 #import "MRCommonColorAndPicture.h"
 #import "UIButton+MRButton.h"
+#import "UIView+MRView.h"
 #import "UIImageView+MRImageView.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
-@interface MRCommonColorAndPicture () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface MRCommonColorAndPicture () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, copy) TakePicture block;
 // 获取过来的控制器
@@ -380,70 +381,73 @@
  点击照片展示照片
  */
 + (void)showPictureWithFrame:(CGRect)frame andPicture:(UIImage *)image{
-
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-//    scroll.userInteractionEnabled = YES;
-//    [window addSubview:scroll];
-//    scroll.contentSize = CGSizeMake(kScreenWidth * 2, kScreenHeight * 2);
-//    scroll.showsVerticalScrollIndicator = NO;
-//    scroll.showsHorizontalScrollIndicator = NO;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    view.backgroundColor = [UIColor clearColor];
-    [window addSubview:view];
-
-//    MRCommonColorAndPicture *common = [MRCommonColorAndPicture sharedMRCommon];
-//    common.scrView = scroll;
-
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
-    imgView.image = image;
-    imgView.contentMode = UIViewContentModeScaleAspectFit;
-    [imgView clipsToBounds];
-    [view addSubview:imgView];
-//    [scroll addSubview:imgView];
-    imgView.userInteractionEnabled = YES;
-//    common.imgView = imgView;
-//    common.frame = frame;
-
-    [UIView animateWithDuration:.5 animations:^{
-        imgView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight / 2);
-        imgView.center = window.center;
-//        scroll.backgroundColor = [UIColor blackColor];
-        view.backgroundColor = [UIColor blackColor];
-    }];
-
-//    // 创建轻击对象, 双击
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction)];
-//    [scroll addGestureRecognizer:tapGesture];
-
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [scroll addSubview:button];
-    [view addSubview:button];
-    button.backgroundColor = [UIColor clearColor];
-    button.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-
-    [button buttonActionWith:^(UIButton *button) {
-        [UIView animateWithDuration:.5 animations:^{
-            imgView.frame = frame;
-//            scroll.backgroundColor = [UIColor clearColor];
-            view.backgroundColor = [UIColor clearColor];
-        } completion:^(BOOL finished) {
-//            [scroll removeFromSuperview];
-            [view removeFromSuperview];
-        }];
-    }];
-
+    MRCommonColorAndPicture *common = [MRCommonColorAndPicture sharedMRCommon];
+    [common initScrollViewWithFrame:frame andPicture:image];
 }
 
+- (void)initScrollViewWithFrame:(CGRect)frame andPicture:(UIImage *)image{
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    scroll.userInteractionEnabled = YES;
+    [window addSubview:scroll];
+    scroll.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
+    scroll.showsVerticalScrollIndicator = NO;
+    scroll.showsHorizontalScrollIndicator = NO;
+    scroll.maximumZoomScale = 2;
+    scroll.minimumZoomScale = 1;
+    scroll.directionalLockEnabled = YES;
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
+    imgView.image = image;
+    imgView.tag = 100;
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    [imgView clipsToBounds];
+    [scroll addSubview:imgView];
+    imgView.userInteractionEnabled = YES;
+    
+    self.scrView = scroll;
+    self.imgView = imgView;
+    self.frame = frame;
+    scroll.delegate = self;
+    
+    [UIView animateWithDuration:.25 animations:^{
+        imgView.size = CGSizeMake(kScreenWidth, kScreenHeight);
+        imgView.center = CGPointMake(scroll.width / 2, scroll.height / 2);
+        scroll.backgroundColor = [UIColor blackColor];
+    }];
+    
+    // 创建轻击对象
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction)];
+    tapGesture.numberOfTapsRequired = 1;
+    [scroll addGestureRecognizer:tapGesture];
+    // 创建轻击对象, 双击
+    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction2)];
+    tapGesture2.numberOfTapsRequired = 2;
+    [scroll addGestureRecognizer:tapGesture2];
+    
+    // 设置当 tapGesture2 触发时, tapGesture 不触发响应
+    [tapGesture requireGestureRecognizerToFail:tapGesture2];
+}
+
+/// 单击事件
 - (void)tapGestureAction{
-    NSLog(@"双击");
     MRCommonColorAndPicture *common = [MRCommonColorAndPicture sharedMRCommon];
-    [UIView animateWithDuration:.5 animations:^{
-        common.imgView.frame = self.frame;
+    [UIView animateWithDuration:.25 animations:^{
+        common.imgView.frame = common.frame;
         common.scrView.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {
         [common.scrView removeFromSuperview];
     }];
+}
+
+/// 双击事件
+- (void)tapGestureAction2{
+    if(self.scrView.zoomScale != 1){
+        [self.scrView setZoomScale:1 animated:YES];
+    }else{
+      [self.scrView setZoomScale:2 animated:YES];
+    }
 }
 
 - (UIImage *)imageSnapshotWithWebView:(UIView *)webView {
@@ -452,6 +456,22 @@
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+/// MARK: scrollView delegate
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return [scrollView viewWithTag:100];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat y = scrollView.contentOffset.y;
+    if(scrollView.zoomScale == 2){
+        CGFloat top = scrollView.zoomScale * kScreenHeight / 4;
+        if(y != top){
+            [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, top) animated:NO];
+        }
+    }
+
 }
 
 
