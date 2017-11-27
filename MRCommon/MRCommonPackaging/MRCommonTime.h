@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, MRCommonTimeType) {
+    TimeTypeYearMonthDay = 0,        /// 年月日
+    TimeTypeOnlyMonthDay,              /// 年月
+    TimeTypeOnlyDay                        /// 日
+};
+
 /// MARK: 处理时间相关的类
 @interface MRCommonTime : NSObject
 
@@ -52,4 +58,12 @@
  6 根据 date 获取 农历      According to the date for the lunar calendar
  */
 +(NSString*)getChineseCalendarWithDate:(NSDate *)date;
+
+
+/**
+ 7 根据时间戳获取时间
+ @param timestamp 距 1970 年的时间戳
+ @param type           format 格式
+ */
++ (NSString *)getTimeToShowWithTimestamp:(NSString *)timestamp andTimeType:(MRCommonTimeType)type;
 @end

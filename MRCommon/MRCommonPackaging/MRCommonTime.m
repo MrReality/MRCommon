@@ -230,6 +230,24 @@
     return @"请重选一次";
 }
 
+/**
+ 7 根据时间戳获取时间
+ @param timestamp 距 1970 年的时间戳
+ @param type           format 格式
+ */
++ (NSString *)getTimeToShowWithTimestamp:(NSString *)timestamp andTimeType:(MRCommonTimeType)type{
+    NSInteger second = timestamp.integerValue / 1000;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
+    NSString *format = nil;
+    if(type == TimeTypeYearMonthDay)
+        format = @"yyyy年MM月dd日 HH:mm";
+    if(type == TimeTypeOnlyMonthDay)
+        format = @"MM月dd日 HH:mm";
+    if(type == TimeTypeOnlyDay)
+        format = @"dd日 HH:mm";
+    return [MRCommonTime formatWith:date andFormat:format];
+}
+
 
 
 @end
