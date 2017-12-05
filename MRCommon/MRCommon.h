@@ -67,6 +67,10 @@
 #define kStoryBoard(format) [UIStoryboard storyboardWithName:format bundle:nil].instantiateInitialViewController
 #define kBundle [NSBundle mainBundle]
 
+#ifndef UIColorHex
+#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
+#endif
+
 #ifndef weakify
 #if DEBUG
 #if __has_feature(objc_arc)
