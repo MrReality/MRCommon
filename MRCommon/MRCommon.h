@@ -38,9 +38,6 @@
 
 // 导航栏
 #define kNavigationHeight   (kIs_iPhone_X ? (kIsVerticalScreen? 88 : 32) : (kIsVerticalScreen? 64 : 32))
-
-#define kUserDefault [NSUserDefaults standardUserDefaults]
-
 /// tableBar
 #define kTabBarHeight       49
 /// 屏幕宽
@@ -65,6 +62,10 @@
 #define kIs_iPhone_6 (kIs_iPhone && kScreenRealHeight == 667.0)
 #define kIs_iPhone_6P (kIs_iPhone && kScreenRealHeight == 736.0)
 #define kIs_iPhone_X (kIs_iPhone && kScreenRealHeight == 812.0)
+
+#define kUserDefaults [NSUserDefaults standardUserDefaults]
+#define kStoryBoard(format) [UIStoryboard storyboardWithName:format bundle:nil].instantiateInitialViewController
+#define kBundle [NSBundle mainBundle]
 
 #ifndef weakify
 #if DEBUG
@@ -174,8 +175,8 @@ return _instance; \
 
 #if 0  
 弹出键盘样式
-UIKeyboardTypeDefault,                  // 默认, 能输入汉字
-UIKeyboardTypeASCIICapable,             // 输入英文和数字 语音
+UIKeyboardTypeDefault,                              // 默认, 能输入汉字
+UIKeyboardTypeASCIICapable,                    // 输入英文和数字 语音
 UIKeyboardTypeNumbersAndPunctuation,    // 能输入汉字
 UIKeyboardTypeURL,                      // 英文 和 表情
 UIKeyboardTypeNumberPad,                // 数字
