@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ImageTap)();
+typedef void(^ImageTap)(void);
 
 @interface UIImageView (MRImageView)
 

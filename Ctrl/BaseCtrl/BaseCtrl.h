@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WFLBaseViewController.h"
 #import "MRGifView.h"
 
-@interface BaseCtrl : WFLBaseViewController
+@interface BaseCtrl : UIViewController
 
 /// 没有数据时, 给出的文本提示
 @property (nonatomic, strong) UILabel *nonLabel;

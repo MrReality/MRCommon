@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void(^OKBlock)();
-typedef void(^CancleBlock)();
-typedef void(^DelayBlock)();
+typedef void(^OKBlock)(void);
+typedef void(^CancleBlock)(void);
+typedef void(^DelayBlock)(void);
 
 // 判断是否有网的 enum  If there is a network of judgment
 typedef NS_ENUM(NSInteger, CommonOtherNetWorkType){

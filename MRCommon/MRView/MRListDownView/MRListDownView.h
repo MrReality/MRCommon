@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^MRListDownBlock)(NSInteger tag, NSInteger index);
-typedef void(^MRCloseBgBlock)();
+typedef void(^MRCloseBgBlock)(void);
 
 typedef NS_ENUM(NSInteger, ListDownImgType){
 
