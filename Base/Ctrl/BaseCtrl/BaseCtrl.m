@@ -35,7 +35,7 @@
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"%@ --> delloc", NSStringFromClass([self class]));
+    NSLog(@"%@ --> ❤️ delloc", NSStringFromClass([self class]));
 }
 
 - (void)viewDidLoad {
