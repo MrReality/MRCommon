@@ -12,6 +12,7 @@
 
 - (void)dealloc{
     NSLog(@"%@ --> 😒 delloc", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

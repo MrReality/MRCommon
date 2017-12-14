@@ -7,7 +7,7 @@
 //
 
 #import "BaseDataSource.h"
-#import "RefreshInterface.h"
+//#import "RefreshInterface.h"
 
 @interface BaseDataSource ()
 
@@ -17,6 +17,7 @@
 
 - (void)dealloc{
     NSLog(@"%@ --> 💤 delloc", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /// MARK: 创建 dataSource 的方法 1

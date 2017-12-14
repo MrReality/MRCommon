@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/// 高度
+#define kInputViewHeight 60
+
 /// MARK: 高端输入框
 @interface MRInputBoxView : UIView
 /// 输入框

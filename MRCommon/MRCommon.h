@@ -74,6 +74,7 @@
 #define kUserDefaults                 [NSUserDefaults standardUserDefaults]
 #define kStoryBoard(format)       [UIStoryboard storyboardWithName:format bundle:nil].instantiateInitialViewController
 #define kBundle                           [NSBundle mainBundle]
+#define kDocuments                    [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 #ifndef UIColorHex
 #define UIColorHex(_hex_)         [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]

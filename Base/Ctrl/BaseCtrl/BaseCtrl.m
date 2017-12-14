@@ -8,6 +8,7 @@
 
 #import "BaseCtrl.h"
 #import "UIView+MRView.h"
+#import "UIViewController+MRUIVC.h"
 
 /// 屏幕宽
 #define kScreenWidth  [UIScreen mainScreen].bounds.size.width

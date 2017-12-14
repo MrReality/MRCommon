@@ -40,17 +40,14 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
 
-    if(self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 60)]){
+    if(self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, kInputViewHeight)]){
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textStateChange) name:UITextFieldTextDidBeginEditingNotification object:nil];
-//        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextFieldTextDidChangeNotification object:nil];
     }
     return self;
 }
 
 - (void)awakeFromNib{
-
+    self.mr_height = kInputViewHeight;
     [super awakeFromNib];
 }
 
@@ -82,35 +79,21 @@
 
     [super layoutSubviews];
 
-    NSInteger font;
-    UIColor *backGroundColor;
-    
-    if(_titleFont){
-        font = self.titleFont;
-    }else{
-        font = kBaseFont;
-    }
-    
-    if(_backColor){
-        backGroundColor = self.backColor;
-    }else{
-        backGroundColor = kBackGroundColor;
-    }
-    
+    /// 字号大小
+    NSInteger font = _titleFont ? self.titleFont : kBaseFont;
+    /// 背景色
+    UIColor *backGroundColor = _backColor ? self.backColor : kBackGroundColor;
     self.backgroundColor = backGroundColor;
-    if(_stateText.length){
-        self.titleLabel.text = _stateText;
-    }else{
-        self.titleLabel.text = self.textField.placeholder;
-    }
+    
+    /// 上面的小显示文字
+    self.titleLabel.text = _stateText.length ? _stateText : self.textField.placeholder;
     self.titleLabel.font = [UIFont systemFontOfSize:font];
 //    self.titleLabel.textColor = titleColor;
     [self.titleLabel sizeToFit];
     self.titleLabel.mr_y = 0;
     self.titleLabel.mr_x = 2 * kSpace;
     
-    if(_showImage){
-
+    if(_showImage){         /// 有显示图片
         self.showImgView.mr_x = 2 * kSpace;
         self.showImgView.mr_y = self.titleLabel.mr_y + self.titleLabel.mr_height + kSpace / 2;
         self.showImgView.image = self.showImage;
@@ -119,11 +102,11 @@
         self.textField.borderStyle = UITextBorderStyleNone;
         self.lineView.frame = CGRectMake(self.textField.mr_x, self.textField.mr_y + self.textField.mr_height - 3, self.textField.mr_width, 1);
     }
-    if(!_showImage){
+    if(!_showImage){            /// 没有显示图片
         self.textField.frame = CGRectMake(2 * kSpace, self.titleLabel.mr_y + self.titleLabel.mr_height + kSpace / 2, self.mr_width - 4 * kSpace, 35);
     }
     
-    if(_isNoBorder){
+    if(_isNoBorder){                /// 没有边框
         self.textField.borderStyle = UITextBorderStyleNone;
         self.lineView.frame = CGRectMake(self.textField.mr_x, self.textField.mr_y + self.textField.mr_height - 3, self.textField.mr_width, 1);
     }
@@ -131,7 +114,7 @@
     if(_firstText.length){                 /// 初始有文字, 让提示文本显示
         self.textField.text = _firstText;
         self.titleLabel.hidden = NO;
-        _firstText = nil;
+//        _firstText = nil;
     }
  
 //    self.textField.backgroundColor = backGroundColor;
@@ -313,6 +296,7 @@
     if(!_titleLabel){
     
         _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = kBaseColor;
         [self addSubview:_titleLabel];
         _titleLabel.hidden = YES;
     }
