@@ -13,17 +13,11 @@ typedef void(^MRSignleSwitchBlock)(NSInteger index, NSInteger MRSingleSwitchTag)
 /// MARK: 单选框
 @interface MRSingleSwitch : UIView
 
-/**
- 默认选中索引   Selected by default index
- */
+/// 默认选中索引   Selected by default index
 @property (nonatomic, assign) NSInteger defaultSelete;
-/**
- 字体大小
- */
+/// 字体大小
 @property (nonatomic, assign) NSInteger titleFont;
-/**
- 字体颜色
- */
+/// 字体颜色
 @property (nonatomic, strong) UIColor *titleColor;
 
 /**
@@ -33,8 +27,7 @@ typedef void(^MRSignleSwitchBlock)(NSInteger index, NSInteger MRSingleSwitchTag)
  @param block (NSInteger index, NSInteger MRSingleSwitchTag)
  */
 - (void)didseleted:(MRSignleSwitchBlock)block;
-/**
- 根据数组创建单选 view  According to the array to create radio view
- */
+
+/// 根据数组创建单选 view  According to the array to create radio view
 - (instancetype)initWithFrame:(CGRect)frame andNameArray:(NSArray *)array;
 @end
