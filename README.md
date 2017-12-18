@@ -10,22 +10,23 @@ MRCommon A collection of many commonly used method, I according to the function 
 Demo Project
 ==============
 The framework shows<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/snapshots.png" width="320"><br/>
 
-See `Example/dropdown下拉栏.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E4%B8%8B%E6%8B%89%E6%A0%8F.gif" width="320"><br/>
+See `Example/ListView(下拉菜单栏)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/ListView.png" width="320"><br/>
 
-See `Example/Filter box 筛选框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E7%AD%9B%E9%80%89%E6%A1%86.gif" width="320"><br/>
 
-See `Radio buttons 单选框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E5%8D%95%E9%80%89%E6%A1%86.gif" width="320"><br/>
+See `Example/DropDownView(筛选框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/DropDownView.png" width="320"><br/>
 
-See `Radio buttons InputBox输入框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E8%BE%93%E5%85%A5%E6%A1%86.gif" width="320"><br/>
+See `Example/SingleSwitch(单选框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/SingleSwitch.png" width="320"><br/>
 
-See `Radio MRChangeViewDemo.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E5%88%87%E6%8D%A2%E6%A0%8F.gif" width="320"><br/>
+See `Example/InputBox(输入框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/InputBox.png" width="320"><br/>
+
+See `Example/ChangeView(切换栏)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/ChangeView.png" width="320"><br/>
+
 
 Installation
 ==============
@@ -58,22 +59,22 @@ MRCommon 集合许多常用方法, 我按照功能分为以下类:<br/>
 
 
 框架展示<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/snapshots.png" width="320"><br/>
 
-查看并运行 `Example/dropdown下拉栏.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E4%B8%8B%E6%8B%89%E6%A0%8F.gif" width="320"><br/>
+查看并运行 `Example/ListView(下拉菜单栏)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/ListView.png" width="320"><br/>
 
-查看并运行 `Example/Filter box 筛选框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E7%AD%9B%E9%80%89%E6%A1%86.gif" width="320"><br/>
 
-查看并运行 `Radio buttons 单选框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E5%8D%95%E9%80%89%E6%A1%86.gif" width="320"><br/>
+查看并运行 `Example/DropDownView(筛选框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/DropDownView.png" width="320"><br/>
 
-查看并运行 `Radio buttons InputBox输入框.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E8%BE%93%E5%85%A5%E6%A1%86.gif" width="320"><br/>
+查看并运行 `Example/SingleSwitch(单选框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/SingleSwitch.png" width="320"><br/>
 
-查看并运行 `Radio MRChangeViewDemo.xcodeproj`<br/>
-<img src="https://github.com/MrReality/MRCommon/blob/syq/Example/Snapshots/%E5%88%87%E6%8D%A2%E6%A0%8F.gif" width="320"><br/>
+查看并运行 `Example/InputBox(输入框)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/InputBox.png" width="320"><br/>
+
+查看并运行 `Example/ChangeView(切换栏)`<br/>
+<img src="https://github.com/MrReality/MRCommon/blob/master/Example/Snapshots/ChangeView.png" width="320"><br/>
 
 安装
 ==============
