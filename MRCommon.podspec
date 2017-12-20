@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license              = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "刘入徵" => "573880506@qq.com" }
   s.platform             = :ios, "8.0"
-  s.source               = { :git => "git@github.com:MrReality/MRCommon.git", :tag => s.version.to_s }
+  s.source               = { :git => "https://github.com/MrReality/MRCommon.git", :tag => s.version.to_s }
   s.source_files          = "MRCommon", "MRCommon/**/*.{h,m}"
   s.requires_arc         = true
 end
