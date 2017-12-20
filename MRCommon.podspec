@@ -8,6 +8,6 @@ Pod::Spec.new do |s|
   s.author             = { "刘入徵" => "573880506@qq.com" }
   s.platform             = :ios, "8.0"
   s.source               = { :git => "https://github.com/MrReality/MRCommon.git", :tag => s.version.to_s }
-  s.source_files          = "MRCommon/**/*.{h,m}"
+  s.source_files          = "MRCommon", "MRCommon/**/*.{h,m}"
   s.requires_arc         = true
 end
