@@ -34,6 +34,7 @@
         /// 接收参数类型
         client.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html", @"text/json", @"text/javascript",@"text/plain",@"image/gif", nil];
         /// 添加 token
+        [client.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
         [client.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [client.requestSerializer setValue:@"webc" forHTTPHeaderField:@"Authtype"];
 //        [client.requestSerializer setValue:@"b939feeee0e1305eea50d2e28a99eeb0" forHTTPHeaderField:@"Authorization"];
