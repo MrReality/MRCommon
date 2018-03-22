@@ -24,6 +24,11 @@
 /// 是否可以改变方向
 @property (nonatomic, assign) BOOL allowRotation;
 
+/// 添加屏幕旋转监听
+- (void)addRotationListening;
+/// 添加键盘弹出消失监听
+- (void)addKeyBoardListening;
+
 /// 弹出键盘时调用的函数, height: 键盘高度, duration: 键盘弹出的时间
 - (void)keyboardWillShowWithKeyBoardHeight:(CGFloat)height andDuration:(CGFloat)duration;
 

@@ -52,13 +52,19 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.titleView = self.navigationLabel;
     self.allowRotation = NO;
-    
+}
+
+/// MARK: 添加屏幕旋转监听
+- (void)addRotationListening{
+    // 监听横竖屏
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeRotate) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+}
+
+/// MARK: 添加键盘弹出消失监听
+- (void)addKeyBoardListening{
     // 监听键盘通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShowWithNotify:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHidenWithNotify:) name:UIKeyboardWillHideNotification object:nil];
-    
-    // 监听横竖屏
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeRotate) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
 }
 
 - (BOOL)shouldAutorotate{
