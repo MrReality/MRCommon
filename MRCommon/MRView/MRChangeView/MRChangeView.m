@@ -14,7 +14,7 @@
 /// 默认未选中颜色
 #define kTextNormalColor  [UIColor colorWithRed:0.20 green:0.20 blue:0.20 alpha:1.00]
 /// 默认选中颜色
-#define kTextSeletedColor [UIColor colorWithRed:0.20 green:0.76 blue:0.49 alpha:1.00]
+#define kTextSeletedColor [UIColor colorWithRed:0.20 green:0.67 blue:0.87 alpha:1.00]
 /// 边框颜色
 #define kBorderColor [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
 
@@ -80,9 +80,9 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
-    if(self = [super initWithFrame:frame]){
     
+    if(self = [super initWithFrame:frame]){
+        
         self.delegate = self;
         
         // 屏幕旋转调用的方法
@@ -96,7 +96,7 @@
 }
 
 - (void)awakeFromNib{
-
+    
     [super awakeFromNib];
     
     self.delegate = self;
@@ -111,7 +111,7 @@
 }
 
 - (void)layoutSubviews{
-
+    
     [super layoutSubviews];
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, [UIScreen mainScreen].bounds.size.width, self.frame.size.height);
@@ -120,7 +120,7 @@
         NSAssert(!self.options.count, @"需要传入选项数组");
         return;
     }
-
+    
     self.labelWidth = 0;
     NSInteger index = self.InitializeIndex ? self.InitializeIndex : 0;
     self.normalColor = kTextNormalColor;
@@ -159,7 +159,7 @@
         if(index == i){
             label.textColor = self.seletedColor;
             self.lineView.backgroundColor = self.seletedColor;
-          
+            
             if(_lineWidth){
                 self.lineView.width = _lineWidth;
             }else{
@@ -188,17 +188,17 @@
             if(self.block){
                 self.block(self.tag, index);
             }
-
+            
         }];
     }
 }
 
 - (void)setOptions:(NSArray *)options{
-
+    
     _options = options;
     
     NSMutableArray *labelArray = [NSMutableArray array];
-
+    
     /// 计算 label 最大宽
     for (NSInteger i = 0; i < _options.count; i++) {
         
@@ -215,7 +215,7 @@
         [label removeFromSuperview];
     }
     self.labelArray = labelArray;
-
+    
     // 水平滑动条消失
     self.showsHorizontalScrollIndicator = NO;
     // 垂直滑动条消失
@@ -225,7 +225,7 @@
 }
 
 - (void)setChangeIndex:(NSInteger)changeIndex{
-
+    
     for (UILabel *label in self.labelArray) {
         label.textColor = self.normalColor;
     }
@@ -237,10 +237,29 @@
             self.lineView.centerX = label.centerX;
         }];
     }
+    if(self.contentSize.width <= self.width){       /// 如果个数不够, 不需要滚动
+        return;
+    }
+    
+    CGFloat width = 0;
+    for(int i = 0; i <= changeIndex; i++){
+        UILabel *label = self.labelArray[i];
+        
+        if(i == changeIndex){       /// 如果是选中索引, 加 label 的一半
+            width += label.width / 2;
+        }else{                      /// 非选中索引, 直接加
+            width += label.width + self.space;
+        }
+    }
+    if(width < self.width){
+        [self setContentOffset:CGPointZero animated:YES];
+    }else{
+        [self setContentOffset:CGPointMake(width, 0) animated:YES];
+    }
 }
 
 - (void)buttonAction:(UIButton *)button{
-
+    
     NSInteger index = button.tag - 500;
     
     for (UILabel *label in self.labelArray) {
