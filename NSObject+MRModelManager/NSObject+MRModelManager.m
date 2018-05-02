@@ -66,7 +66,7 @@
     if([self isKindOfClass:[NSMutableDictionary class]] || [self isKindOfClass:[NSDictionary class]]){
         return [self mr_dicKeyValues];
     }
-    return nil;
+    return self.modelToJSONObject;
 }
 
 @end

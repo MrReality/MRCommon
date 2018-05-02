@@ -14,7 +14,7 @@
 /// 默认未选中颜色
 #define kTextNormalColor  [UIColor colorWithRed:0.20 green:0.20 blue:0.20 alpha:1.00]
 /// 默认选中颜色
-#define kTextSeletedColor [UIColor colorWithRed:0.20 green:0.76 blue:0.49 alpha:1.00]
+#define kTextSeletedColor [UIColor colorWithRed:0.20 green:0.67 blue:0.87 alpha:1.00]
 /// 边框颜色
 #define kBorderColor [UIColor colorWithRed:0.79 green:0.79 blue:0.79 alpha:1.00]
 

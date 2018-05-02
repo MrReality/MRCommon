@@ -70,6 +70,11 @@
 #define kIs_iPhone_6P               (kIs_iPhone && kScreenRealHeight == 736.0)
 #define kIs_iPhone_X                 (kIs_iPhone && kScreenRealHeight == 812.0)
 
+/// 加锁
+#define kLock(lock) dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+/// 解锁
+#define kUnlock(lock) dispatch_semaphore_signal(lock);
+
 /// userdefaults
 #define kUserDefaults                 [NSUserDefaults standardUserDefaults]
 #define kStoryBoard(format)       [UIStoryboard storyboardWithName:format bundle:nil].instantiateInitialViewController

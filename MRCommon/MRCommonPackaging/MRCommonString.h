@@ -26,7 +26,7 @@
 /**
  3 判断字符串是否为空              To determine whether a string is empty
  */
-+(BOOL) isBlankString:(NSString *)string;
++ (BOOL)isBlankString:(NSString *)string;
 
 /**
  4 判断字符串是否有空格             To determine whether a string is whitespace
@@ -51,17 +51,17 @@
 /**
  8 获取本地版本号                 Access to the local version number
  */
-+ (NSString *) getLocalAppVersion;
++ (NSString *)getLocalAppVersion;
 
 /**
  9 获取 BundleID                Get BundleID
  */
-+ (NSString *) getBundleID;
++ (NSString *)getBundleID;
 
 /**
  10 获取 app 的名字                Get the name of the app
  */
-+ (NSString *) getAppName;
++ (NSString *)getAppName;
 
 /**
  11 字典转 json                   Turn a json dictionary
