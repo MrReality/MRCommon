@@ -37,6 +37,15 @@
 #import "MRCommonOther.h"
 #import "MRCommonRuntime.h"
 
+/// 没有返回参数的 block
+typedef void(^MRNoParamBlock)(void);
+/// 一个参数的 block
+typedef void(^MROneParamBlock)(id param);
+/// 只有一个枚举的 block
+typedef void(^MROneEnumBlock)(NSInteger type);
+/// 有枚举值并且有参数的 block
+typedef void(^MREnumAndParamBlock)(NSInteger type, id param);
+
 // 导航栏
 #define kNavigationHeight        (kIs_iPhone_X ? (kIsVerticalScreen? 88 : 32) : (kIsVerticalScreen? 64 : 32))
 /// tableBar
