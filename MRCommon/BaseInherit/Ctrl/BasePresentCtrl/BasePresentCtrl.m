@@ -90,19 +90,19 @@
     /// 横屏
     if([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight){
         [UIView animateWithDuration:.5 animations:^{
-            _navView.frame = CGRectMake(0, 0, width, 44);
-            _sendButton.frame = CGRectMake(width - kButtonWidth - 15, 7, kButtonWidth, kButtonHeight);
-            _cancelButton.frame = CGRectMake(15, 7, kButtonWidth, kButtonHeight);
-            _line.frame = CGRectMake(0, 44 - .5, _navView.width, .5);
+            self->_navView.frame = CGRectMake(0, 0, width, 44);
+            self->_sendButton.frame = CGRectMake(width - kButtonWidth - 15, 7, kButtonWidth, kButtonHeight);
+            self->_cancelButton.frame = CGRectMake(15, 7, kButtonWidth, kButtonHeight);
+            self->_line.frame = CGRectMake(0, 44 - .5, self->_navView.width, .5);
             self.navigationLabel.centerX = self.view.centerX;
             self.navigationLabel.top = 44 / 2 - self.navigationLabel.height / 2;
         }];
     }else{          /// 竖屏
         [UIView animateWithDuration:.5 animations:^{
-            _navView.frame = CGRectMake(0, 0, width, kNavigationHeight);
-            _sendButton.frame = CGRectMake(width - kButtonWidth - 15, 20 + 7, kButtonWidth, kButtonHeight);
-            _cancelButton.frame = CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight);
-            _line.frame = CGRectMake(0, 64 - .5, _navView.width, .5);
+            self->_navView.frame = CGRectMake(0, 0, width, kNavigationHeight);
+            self->_sendButton.frame = CGRectMake(width - kButtonWidth - 15, 20 + 7, kButtonWidth, kButtonHeight);
+            self->_cancelButton.frame = CGRectMake(15, 20 + 7, kButtonWidth, kButtonHeight);
+            self->_line.frame = CGRectMake(0, 64 - .5, self->_navView.width, .5);
             self.navigationLabel.centerX = self.view.centerX;
             self.navigationLabel.top = 20 + 44 / 2 - self.navigationLabel.height / 2;
         }];

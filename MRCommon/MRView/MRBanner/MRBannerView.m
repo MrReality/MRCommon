@@ -173,7 +173,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self.timer invalidate];
-        _timer = nil;
+        self->_timer = nil;
     });
 }
 

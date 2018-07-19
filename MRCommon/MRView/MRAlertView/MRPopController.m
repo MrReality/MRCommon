@@ -252,13 +252,13 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                              
                              [self dropAnimatedFinished];
                              [self maskAlphaFinished];
-                             _popupView.center = [self finishedCenterPoint];
+                             self->_popupView.center = [self finishedCenterPoint];
                              
                          } completion:^(BOOL finished) {
                              
                              if (!finished) return;
-                             _popupView.userInteractionEnabled = YES;
-                             _isPresenting = YES;
+                             self->_popupView.userInteractionEnabled = YES;
+                             self->_isPresenting = YES;
                              if (nil != self.didPresent) {
                                  self.didPresent(self);
                              } else {
@@ -276,13 +276,13 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                              
                              [self dropAnimatedFinished];
                              [self maskAlphaFinished];
-                             _popupView.center = [self finishedCenterPoint];
+                             self->_popupView.center = [self finishedCenterPoint];
                              
                          } completion:^(BOOL finished) {
                              
                              if (!finished) return;
-                             _popupView.userInteractionEnabled = YES;
-                             _isPresenting = YES;
+                             self->_popupView.userInteractionEnabled = YES;
+                             self->_isPresenting = YES;
                              if (nil != self.didPresent) {
                                  self.didPresent(self);
                              } else {
@@ -323,7 +323,7 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              
-                             _popupView.center = [self elasticSpacePoint:30];
+                             self->_popupView.center = [self elasticSpacePoint:30];
                              [self maskAlphaElastic];
                              
                          } completion:^(BOOL finished) {
@@ -335,14 +335,14 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                                                   
                                                   [self dropAnimatedDismissed];
                                                   [self maskAlphaInitial];
-                                                  _popupView.center = [self dismissedCenterPoint];
+                                                  self->_popupView.center = [self dismissedCenterPoint];
                                                   
                                               } completion:^(BOOL finished) {
                                                   
                                                   if (!finished) return;
                                                   [self removeSubviews];
-                                                  _isPresenting = NO;
-                                                  _popupView.transform = CGAffineTransformIdentity;
+                                                  self->_isPresenting = NO;
+                                                  self->_popupView.transform = CGAffineTransformIdentity;
                                                   if (nil != self.didDismiss) {
                                                       self.didDismiss(self);
                                                   } else {
@@ -361,14 +361,14 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                              
                              [self dropAnimatedDismissed];
                              [self maskAlphaInitial];
-                             _popupView.center = [self dismissedCenterPoint];
+                             self->_popupView.center = [self dismissedCenterPoint];
                              
                          } completion:^(BOOL finished) {
                              
                              if (!finished) return;
                              [self removeSubviews];
-                             _isPresenting = NO;
-                             _popupView.transform = CGAffineTransformIdentity;
+                             self->_isPresenting = NO;
+                             self->_popupView.transform = CGAffineTransformIdentity;
                              if (nil != self.didDismiss) {
                                  self.didDismiss(self);
                              } else {
@@ -712,7 +712,7 @@ static void *PopupControllerParametersKey = &PopupControllerParametersKey;
                     }
                     CGFloat alpha = coefficient * 0.5 - fabs(changeValue - coefficient * 0.5);
                     [UIView animateWithDuration:0.15 animations:^{
-                        _maskView.alpha = alpha;
+                        self->_maskView.alpha = alpha;
                     } completion:NULL];
                     
                 } break;

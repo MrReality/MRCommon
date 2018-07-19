@@ -150,21 +150,21 @@
     }
 
     [UIView animateWithDuration:.3 animations:^{
-        if(!_showImage && !_isNoBorder){
+        if(!self->_showImage && !self->_isNoBorder){
             self.promptView.left = self.textField.left + 3 + rect.origin.x;
             self.promptView.size = CGSizeMake(10, 10);
             self.promptView.centerY = self.textField.centerY;
             self.promptView.hidden = NO;
         }
         
-        if(_showImage){
+        if(self->_showImage){
             self.promptView.left = self.textField.left - 4 + rect.origin.x;
             self.promptView.size = CGSizeMake(10, 10);
             self.promptView.centerY = self.textField.centerY;
             self.promptView.hidden = NO;
         }
         
-        if(_isNoBorder){                                     // 没图片没框
+        if(self->_isNoBorder){                                     // 没图片没框
             self.promptView.left = self.textField.left + rect.origin.x;
             self.promptView.size = CGSizeMake(10, 10);
             self.promptView.centerY = self.textField.centerY;
@@ -175,19 +175,19 @@
         
         [UIView animateWithDuration:.2 animations:^{
             
-            if(!_showImage && !_isNoBorder){
+            if(!self->_showImage && !self->_isNoBorder){
                 self.promptView.left = self.textField.left + 7 + rect.origin.x;
                 self.promptView.size = CGSizeMake(2, 27);
                 self.promptView.centerY = self.textField.centerY;
             }
             
-            if(_showImage){
+            if(self->_showImage){
                 self.promptView.left = self.textField.left + rect.origin.x;
                 self.promptView.size = CGSizeMake(2, 25);
                 self.promptView.centerY = self.textField.centerY;
             }
             
-            if(_isNoBorder){
+            if(self->_isNoBorder){
                 self.promptView.left = self.textField.left + rect.origin.x;
                 self.promptView.size = CGSizeMake(2, 27);
                 self.promptView.centerY = self.textField.centerY;
