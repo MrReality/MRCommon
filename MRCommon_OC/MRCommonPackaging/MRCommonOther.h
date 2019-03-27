@@ -157,9 +157,6 @@ typedef NS_ENUM(NSInteger, CommonOtherJumpType){
 /// 17 跳转到 iphone 指定页面, 需要在 info 添加 URL types 字段, 并在 item0 里添加 URL Schemes 值为 prefs
 + (void)jumpWithType:(CommonOtherJumpType)type;
 
-/// 18 根据路径创建一个文件夹
-+ (BOOL)creatFolderWithFile:(NSString *)file;
-
 /// 19 根据路径创建文件 第二个参数, 是否覆盖掉
 + (BOOL)creatFileWithPath:(NSString *)path isCover:(BOOL)isCover;
 
